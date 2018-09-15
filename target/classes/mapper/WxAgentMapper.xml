@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxAgentMapper" >
+  <resultMap id="BaseResultMap" type="com.sharebedapp.jijl.model.WxAgent" >
+    <id column="agentId" property="agentId" jdbcType="VARCHAR" />
+    <result column="agentAccount" property="agentAccount" jdbcType="VARCHAR" />
+    <result column="agentPassWord" property="agentPassWord" jdbcType="VARCHAR" />
+    <result column="agentNickName" property="agentNickName" jdbcType="VARCHAR" />
+    <result column="agentPic" property="agentPic" jdbcType="VARCHAR" />
+    <result column="agentPhone" property="agentPhone" jdbcType="VARCHAR" />
+    <result column="hospitalId" property="hospitalId" jdbcType="VARCHAR" />
+    <result column="roleId" property="roleId" jdbcType="VARCHAR" />
+    <result column="isFlag" property="isFlag" jdbcType="INTEGER" />
+    <result column="cTime" property="cTime" jdbcType="TIMESTAMP" />
+    <result column="proportion" property="proportion" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    agentId, agentAccount, agentPassWord, agentNickName, agentPic, agentPhone, hospitalId, 
+    roleId, isFlag, cTime ,proportion
+  </sql>
+  
+  <sql id="Example_Where">
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="agentId != null and agentId!=''" >
+        and agentId = #{agentId,jdbcType=VARCHAR}
+      </if>
+      <if test="agentAccount != null and agentAccount!=''" >
+        and agentAccount = #{agentAccount,jdbcType=VARCHAR}
+      </if>
+      <if test="agentPassWord != null and agentPassWord!=''" >
+        and agentPassWord=#{agentPassWord,jdbcType=VARCHAR}
+      </if>
+      <if test="agentNickName != null and agentNickName!=''" >
+        and agentNickName=#{agentNickName,jdbcType=VARCHAR}
+      </if>
+      <if test="agentPic != null and agentPic!=''" >
+        and agentPic=#{agentPic,jdbcType=VARCHAR}
+      </if>
+      <if test="agentPhone != null and agentPhone!=''" >
+        and agentPhone=#{agentPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="hospitalId != null and hospitalId!=''" >
+        and hospitalId=#{hospitalId,jdbcType=VARCHAR}
+      </if>
+      <if test="roleId != null and roleId!=''" >
+        and roleId=#{roleId,jdbcType=VARCHAR}
+      </if>
+      <if test="isFlag != null" >
+        and isFlag=#{isFlag,jdbcType=INTEGER}
+      </if>
+      <if test="cTime != null" >
+        and cTime=#{cTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="proportion != null" >
+        and proportion=#{proportion,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </sql>
+  
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sharebedapp.jijl.model.WxAgent" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_agent
+    <include refid="Example_Where" />
+    order by cTime
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_agent
+    where agentId = #{agentId,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_agent
+    where agentId = #{agentId,jdbcType=VARCHAR}
+  </delete>
+  
+  <delete id="deleteByExample" parameterType="com.sharebedapp.jijl.model.WxAgent" >
+    delete from wx_agent
+    <include refid="Example_Where" />
+  </delete>
+  
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxAgent" >
+    insert into wx_agent (agentId, agentAccount, agentPassWord, 
+      agentNickName, agentPic, agentPhone, 
+      hospitalId, roleId, isFlag, 
+      cTime,proportion)
+    values (#{agentId,jdbcType=VARCHAR}, #{agentAccount,jdbcType=VARCHAR}, #{agentPassWord,jdbcType=VARCHAR}, 
+      #{agentNickName,jdbcType=VARCHAR}, #{agentPic,jdbcType=VARCHAR}, #{agentPhone,jdbcType=VARCHAR}, 
+      #{hospitalId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{isFlag,jdbcType=INTEGER}, 
+      #{cTime,jdbcType=TIMESTAMP},#{proportion,jdbcType=INTEGER})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxAgent" >
+    insert into wx_agent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="agentId != null" >
+        agentId,
+      </if>
+      <if test="agentAccount != null" >
+        agentAccount,
+      </if>
+      <if test="agentPassWord != null" >
+        agentPassWord,
+      </if>
+      <if test="agentNickName != null" >
+        agentNickName,
+      </if>
+      <if test="agentPic != null" >
+        agentPic,
+      </if>
+      <if test="agentPhone != null" >
+        agentPhone,
+      </if>
+      <if test="hospitalId != null" >
+        hospitalId,
+      </if>
+      <if test="roleId != null" >
+        roleId,
+      </if>
+      <if test="isFlag != null" >
+        isFlag,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+      <if test="proportion != null" >
+        proportion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="agentId != null" >
+        #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentAccount != null" >
+        #{agentAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPassWord != null" >
+        #{agentPassWord,jdbcType=VARCHAR},
+      </if>
+      <if test="agentNickName != null" >
+        #{agentNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPic != null" >
+        #{agentPic,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPhone != null" >
+        #{agentPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalId != null" >
+        #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="isFlag != null" >
+        #{isFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proportion != null" >
+        #{proportion,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxAgent" >
+    update wx_agent
+    <set >
+      <if test="agentAccount != null and agentAccount != ''" >
+        agentAccount = #{agentAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPassWord != null and agentPassWord != ''" >
+        agentPassWord = #{agentPassWord,jdbcType=VARCHAR},
+      </if>
+      <if test="agentNickName != null and agentNickName != ''" >
+        agentNickName = #{agentNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPic != null and agentPic != ''" >
+        agentPic = #{agentPic,jdbcType=VARCHAR},
+      </if>
+      <if test="agentPhone != null and agentPhone != ''" >
+        agentPhone = #{agentPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalId != null and hospitalId != ''" >
+        hospitalId = #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null and roleId != ''" >
+        roleId = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="isFlag != null" >
+        isFlag = #{isFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proportion != null" >
+        proportion = #{proportion,jdbcType=INTEGER},
+      </if>
+    </set>
+    where agentId = #{agentId,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxAgent" >
+    update wx_agent
+    set agentAccount = #{agentAccount,jdbcType=VARCHAR},
+      agentPassWord = #{agentPassWord,jdbcType=VARCHAR},
+      agentNickName = #{agentNickName,jdbcType=VARCHAR},
+      agentPic = #{agentPic,jdbcType=VARCHAR},
+      agentPhone = #{agentPhone,jdbcType=VARCHAR},
+      hospitalId = #{hospitalId,jdbcType=VARCHAR},
+      roleId = #{roleId,jdbcType=VARCHAR},
+      isFlag = #{isFlag,jdbcType=INTEGER},
+      cTime = #{cTime,jdbcType=TIMESTAMP},
+      proportion = #{proportion,jdbcType=INTEGER}
+    where agentId = #{agentId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAgentByCondition" resultType="com.sharebedapp.jijl.model.wrap.AgentInfo">
+    select
+    ag.agentId ,ag.agentAccount, ag.agentPassWord, ag.agentNickName, ag.agentPhone,
+    ag.proportion, hp.hospitalId,hp.hospitalName, hp.hospitalAddress,
+    rl.roleName, ag.isFlag
+    from wx_agent ag
+    left join wx_hospital hp on hp.hospitalId = ag.hospitalId
+    left join wx_role rl on rl.roleId = ag.roleId
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="agentNickName != null and agentNickName !=''" >
+      and ag.agentNickName like concat('%',#{agentNickName,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="roleName != null and roleName !=''" >
+      and  rl.roleName like concat('%',#{roleName,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="agentAccount != null and agentAccount !=''" >
+      and ag.agentAccount like concat('%',#{agentAccount,jdbcType=VARCHAR},'%')
+      </if>
+        <if test="proportion != null and proportion !=''" >
+            and ag.proportion = #{proportion,jdbcType=INTEGER}
+        </if>
+        <if test="agentPhone != null and agentPhone !=''" >
+            and ag.agentPhone = #{agentPhone,jdbcType=VARCHAR}
+        </if>
+      <if test="hospitalId != null and hospitalId !=''" >
+        and ag.hospitalId = #{hospitalId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    order by ag.cTime desc
+  </select>
+
+  <select id="selectByAgentPhone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_agent
+    where agentPhone = #{agentPhone,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getEarningsAgetnList" resultType="com.sharebedapp.jijl.model.WxAgent" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_agent
+    where hospitalId = #{hospitalId}  AND isFlag=1
+  </select>
+
+  <select id="selectByHospitalId" resultType="com.sharebedapp.jijl.model.WxAgent">
+    select
+    <include refid="Base_Column_List" />
+    from wx_agent
+    where hospitalId = #{hospitalId}
+  </select>
+
+  <select id="selectAgentByAccount" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_agent
+    where agentAccount = #{agentAccount,jdbcType=VARCHAR}
+  </select>
+</mapper>

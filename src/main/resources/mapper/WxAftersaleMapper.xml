@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxAftersaleMapper" >
+  
+
+  <sql id="Base_Column_List" >
+    afterSaleId, afterSaleType,equipmentId, userId, price, afterSalePrice, cTime
+  </sql>
+  
+  <sql id="Example_Where">
+    
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="afterSaleId != null" >
+        afterSaleId = #{afterSaleId,jdbcType=VARCHAR}
+      </if>
+      <if test="afterSaleType != null" >
+        afterSaleType = #{afterSaleType,jdbcType=INTEGER}
+      </if>
+      <if test="equipmentId != null" >
+        equipmentId = #{equipmentId,jdbcType=VARCHAR}
+      </if>
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL}
+      </if>
+      <if test="afterSalePrice != null" >
+        afterSalePrice = #{afterSalePrice,jdbcType=VARCHAR}
+      </if>
+      <if test="cTime != null" >
+        cTime  = #{cTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+    
+  </sql>
+  
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxAftersale" parameterType="com.sharebedapp.jijl.model.WxAftersale" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_aftersale
+    <include refid="Example_Where"/>
+      order by cTime
+  </select>
+  
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxAftersale" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_aftersale
+    where afterSaleId = #{afterSaleId,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_aftersale
+    where afterSaleId = #{afterSaleId,jdbcType=VARCHAR}
+  </delete>
+  
+  <delete id="deleteByExample" parameterType="com.sharebedapp.jijl.model.WxAftersale" >
+    delete from wx_aftersale
+    <include refid="Example_Where"/>
+  </delete>
+  
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxAftersale" >
+    insert into wx_aftersale (afterSaleId, afterSaleType,equipmentId, userId,
+      price, afterSalePrice, cTime
+      )
+    values (#{afterSaleId,jdbcType=VARCHAR}, #{afterSaleType,jdbcType=INTEGER},#{equipmentId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+      #{price,jdbcType=DECIMAL}, #{afterSalePrice,jdbcType=VARCHAR}, #{cTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxAftersale" >
+    insert into wx_aftersale
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="afterSaleId != null" >
+        afterSaleId,
+      </if>
+      <if test="afterSaleType != null" >
+        afterSaleType,
+      </if>
+
+      <if test="equipmentId != null" >
+        equipmentId,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="afterSalePrice != null" >
+        afterSalePrice,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="afterSaleId != null" >
+        #{afterSaleId,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleType != null" >
+        #{afterSaleType,jdbcType=INTEGER},
+      </if>
+
+
+      <if test="userId != null" >
+        #{equipmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="afterSalePrice != null" >
+        #{afterSalePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxAftersale" >
+    update wx_aftersale
+    <set >
+      <if test="afterSaleType != null" >
+        afterSaleType = #{afterSaleType,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentId != null" >
+        userId = #{equipmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="afterSalePrice != null" >
+        afterSalePrice = #{afterSalePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where afterSaleId = #{afterSaleId,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxAftersale" >
+    update wx_aftersale
+    set afterSaleType = #{afterSaleType,jdbcType=INTEGER},
+      equipmentId = #{equipmentId,jdbcType=VARCHAR},
+      userId = #{userId,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      afterSalePrice = #{afterSalePrice,jdbcType=VARCHAR},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where afterSaleId = #{afterSaleId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getAftersaleList" resultType="java.util.Map"  >
+    select
+      IFNULL(af.afterSaleId,'')afterSaleId,
+      IFNULL(af.price,0)price,
+      IFNULL(af.cTime,'')cTime,
+      IFNULL(af.afterSalePrice,'')afterSalePrice,
+      IFNULL(us.userPhone,'')userPhone
+    from wx_aftersale af
+    LEFT JOIN wx_user us ON af.userId=us.userId
+    where af.equipmentId=#{equipmentId} ORDER BY af.cTime DESC
+  </select>
+
+</mapper>

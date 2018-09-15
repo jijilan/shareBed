@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxCashrequestMapper" >
+
+  <sql id="Base_Column_List" >
+    cashRequestId, agentId, userId, bankNumber, bankRealName, phoneNumber, bankName, 
+    bankCardType, amount, status, cashRequestType, nayReason, cTime, uTime
+  </sql>
+
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxCashrequest" parameterType="com.sharebedapp.jijl.model.WxCashrequest" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_cashrequest
+    <trim prefix="where" prefixOverrides="and | or">
+    <if test="agentId != null" >
+     AND agentId = #{agentId,jdbcType=VARCHAR}
+    </if>
+    <if test="userId != null" >
+      AND  userId = #{userId,jdbcType=VARCHAR}
+    </if>
+    <if test="bankNumber != null" >
+      AND  bankNumber = #{bankNumber,jdbcType=VARCHAR}
+    </if>
+    <if test="bankRealName != null" >
+      AND bankRealName = #{bankRealName,jdbcType=VARCHAR}
+    </if>
+    <if test="phoneNumber != null" >
+      AND phoneNumber = #{phoneNumber,jdbcType=VARCHAR}
+    </if>
+    <if test="bankName != null" >
+      AND bankName = #{bankName,jdbcType=VARCHAR}
+    </if>
+    <if test="bankCardType != null" >
+      AND  bankCardType = #{bankCardType,jdbcType=VARCHAR}
+    </if>
+    <if test="amount != null" >
+      AND amount = #{amount,jdbcType=DECIMAL}
+    </if>
+    <if test="status != null" >
+      AND status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="cashRequestType != null" >
+      AND cashRequestType = #{cashRequestType,jdbcType=INTEGER}
+    </if>
+    <if test="nayReason != null" >
+      AND  nayReason = #{nayReason,jdbcType=VARCHAR}
+    </if>
+    <if test="cTime != null" >
+      AND   cTime = #{cTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="uTime != null" >
+      AND uTime = #{uTime,jdbcType=TIMESTAMP}
+    </if>
+      <if test="cashRequestId != null" >
+        AND cashRequestId = #{cashRequestId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+      order by cTime DESC
+
+  </select>
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxCashrequest" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_cashrequest
+    where cashRequestId = #{cashRequestId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_cashrequest
+    where cashRequestId = #{cashRequestId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxCashrequest" >
+    insert into wx_cashrequest (cashRequestId, agentId, userId, 
+      bankNumber, bankRealName, phoneNumber, 
+      bankName, bankCardType, amount, 
+      status, cashRequestType, nayReason, 
+      cTime, uTime)
+    values (#{cashRequestId,jdbcType=VARCHAR}, #{agentId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{bankNumber,jdbcType=VARCHAR}, #{bankRealName,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{bankCardType,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{status,jdbcType=INTEGER}, #{cashRequestType,jdbcType=INTEGER}, #{nayReason,jdbcType=VARCHAR}, 
+      #{cTime,jdbcType=TIMESTAMP}, #{uTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxCashrequest" >
+    insert into wx_cashrequest
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cashRequestId != null" >
+        cashRequestId,
+      </if>
+      <if test="agentId != null" >
+        agentId,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="bankNumber != null" >
+        bankNumber,
+      </if>
+      <if test="bankRealName != null" >
+        bankRealName,
+      </if>
+      <if test="phoneNumber != null" >
+        phoneNumber,
+      </if>
+      <if test="bankName != null" >
+        bankName,
+      </if>
+      <if test="bankCardType != null" >
+        bankCardType,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="cashRequestType != null" >
+        cashRequestType,
+      </if>
+      <if test="nayReason != null" >
+        nayReason,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+      <if test="uTime != null" >
+        uTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cashRequestId != null" >
+        #{cashRequestId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNumber != null" >
+        #{bankNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankRealName != null" >
+        #{bankRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardType != null" >
+        #{bankCardType,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cashRequestType != null" >
+        #{cashRequestType,jdbcType=INTEGER},
+      </if>
+      <if test="nayReason != null" >
+        #{nayReason,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uTime != null" >
+        #{uTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxCashrequest" >
+    update wx_cashrequest
+    <set >
+      <if test="agentId != null" >
+        agentId = #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNumber != null" >
+        bankNumber = #{bankNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankRealName != null" >
+        bankRealName = #{bankRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        phoneNumber = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        bankName = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardType != null" >
+        bankCardType = #{bankCardType,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cashRequestType != null" >
+        cashRequestType = #{cashRequestType,jdbcType=INTEGER},
+      </if>
+      <if test="nayReason != null" >
+        nayReason = #{nayReason,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uTime != null" >
+        uTime = #{uTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cashRequestId = #{cashRequestId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxCashrequest" >
+    update wx_cashrequest
+    set agentId = #{agentId,jdbcType=VARCHAR},
+      userId = #{userId,jdbcType=VARCHAR},
+      bankNumber = #{bankNumber,jdbcType=VARCHAR},
+      bankRealName = #{bankRealName,jdbcType=VARCHAR},
+      phoneNumber = #{phoneNumber,jdbcType=VARCHAR},
+      bankName = #{bankName,jdbcType=VARCHAR},
+      bankCardType = #{bankCardType,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      cashRequestType = #{cashRequestType,jdbcType=INTEGER},
+      nayReason = #{nayReason,jdbcType=VARCHAR},
+      cTime = #{cTime,jdbcType=TIMESTAMP},
+      uTime = #{uTime,jdbcType=TIMESTAMP}
+    where cashRequestId = #{cashRequestId,jdbcType=VARCHAR}
+  </update>
+  <select id="getCashRequestList" resultType="java.util.Map"  >
+    select
+    IFNULL( ca.cashRequestId,'')cashRequestId,
+    IFNULL( ca.bankName,'')bankName,
+    IFNULL( ca.bankNumber,'')bankNumber,
+    IFNULL( ca.amount,0)amount,
+    IFNULL( ca.bankCardType,0)bankCardType,
+    IFNULL( u.userPhone,'')userPhone,
+    IFNULL( ca.bankRealName,'')bankRealName,
+    IFNULL( u.isPurchaser,'')isPurchaser,
+    IFNULL( ro.roleName,'')roleName,
+
+    IFNULL( ca.phoneNumber,'')phoneNumber,
+    IFNULL( ca.status,0)status,
+    IFNULL( ca.cTime,'')cTime
+    from wx_cashrequest ca
+    LEFT JOIN  wx_user u ON u.userId=ca.userId
+    LEFT JOIN wx_agent ag ON ag.agentId=ca.agentId
+    LEFT JOIN wx_role ro ON ag.roleId=ro.roleId
+    where 1=1
+    <if test="userPhone != null and userPhone != ''">
+      AND u.userPhone LIKE CONCAT('%',#{userPhone},'%')
+    </if>
+    <if test="phoneNumber != null and phoneNumber != ''">
+      AND ca.phoneNumber LIKE CONCAT('%',#{phoneNumber},'%')
+    </if>
+    <if test="bankRealName != null and bankRealName != ''">
+      AND ca.bankRealName LIKE CONCAT('%',#{bankRealName},'%')
+    </if>
+    ORDER BY ca.cTime DESC
+  </select>
+
+  <select id="getCashRequestByStartTime" resultType="com.sharebedapp.jijl.model.WxCashrequest">
+    select <include refid="Base_Column_List"/>
+    from wx_cashrequest
+    where cTime &gt; #{startTime} and status = 2
+  </select>
+
+  <select id="countWithdraw" resultType="java.lang.Integer">
+    select count(1) from wx_cashrequest
+    where cTime &gt;= #{startTime}
+    and cTime &lt;= #{endTime}
+    <if test="userId != null and userId != ''">
+      AND userId = #{userId}
+    </if>
+    <if test="agentId != null and agentId != ''">
+      AND agentId = #{agentId}
+    </if>
+  </select>
+</mapper>

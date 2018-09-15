@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxDeptMapper" >
+
+  <sql id="Base_Column_List" >
+    deptId, deptName, deptNumber, fid, hospitalId, cTime
+  </sql>
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxDept" parameterType="com.sharebedapp.jijl.model.WxDept" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_dept
+    <trim prefix="where" prefixOverrides="and | or">
+
+      <if test="deptName != null and deptName != ''" >
+      AND  deptName = #{deptName,jdbcType=VARCHAR}
+      </if>
+      <if test="deptNumber != null and deptNumber != ''" >
+        AND  deptNumber = #{deptNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="fid != null " >
+        AND  fid = #{fid,jdbcType=INTEGER}
+      </if>
+      <if test="hospitalId != null and hospitalId != ''" >
+        AND  hospitalId = #{hospitalId,jdbcType=VARCHAR}
+      </if>
+      <if test="cTime != null" >
+        AND  cTime = #{cTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="deptId != null" >
+        AND  deptId = #{deptId,jdbcType=INTEGER}
+      </if>
+    </trim>
+      order by cTime DESC
+  </select>
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxDept" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_dept
+    where deptId = #{deptId,jdbcType=INTEGER}
+    order by cTime
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wx_dept
+    where deptId = #{deptId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxDept" >
+    insert into wx_dept (deptId, deptName, deptNumber, 
+      fid, hospitalId, cTime
+      )
+    values (#{deptId,jdbcType=INTEGER}, #{deptName,jdbcType=VARCHAR}, #{deptNumber,jdbcType=VARCHAR}, 
+      #{fid,jdbcType=INTEGER}, #{hospitalId,jdbcType=VARCHAR}, #{cTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxDept" >
+    insert into wx_dept
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptId != null" >
+        deptId,
+      </if>
+      <if test="deptName != null" >
+        deptName,
+      </if>
+      <if test="deptNumber != null" >
+        deptNumber,
+      </if>
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="hospitalId != null" >
+        hospitalId,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptId != null" >
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNumber != null" >
+        #{deptNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fid != null" >
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalId != null" >
+        #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxDept" >
+    update wx_dept
+    <set >
+      <if test="deptName != null" >
+        deptName = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNumber != null" >
+        deptNumber = #{deptNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fid != null" >
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalId != null" >
+        hospitalId = #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where deptId = #{deptId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxDept" >
+    update wx_dept
+    set deptName = #{deptName,jdbcType=VARCHAR},
+      deptNumber = #{deptNumber,jdbcType=VARCHAR},
+      fid = #{fid,jdbcType=INTEGER},
+      hospitalId = #{hospitalId,jdbcType=VARCHAR},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where deptId = #{deptId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectBySickBedByWard" resultType="com.sharebedapp.jijl.model.WxDept" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_dept
+    where fid = #{fid,jdbcType=INTEGER}
+    order by cTime
+  </select>
+
+</mapper>

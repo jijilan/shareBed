@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxGoodsOrdersMapper" >
+
+  <sql id="Base_Column_List" >
+    goodsOrdersId, totalPrice, totalNum, price, userId,categoryId,agentId, orderStatus, outTradeNo,
+    payType, payTime, hospitalId, cTime
+  </sql>
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxGoodsOrders" parameterType="com.sharebedapp.jijl.model.WxGoodsOrders" >
+    select
+
+    <include refid="Base_Column_List" />
+    from wx_goods_orders
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="totalPrice != null" >
+        AND totalPrice = #{totalPrice,jdbcType=DECIMAL}
+      </if>
+      <if test="totalNum != null" >
+        AND totalNum = #{totalNum,jdbcType=INTEGER}
+      </if>
+      <if test="price != null" >
+        AND price = #{price,jdbcType=DECIMAL}
+      </if>
+      <if test="userId != null" >
+        AND userId = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="categoryId != null" >
+        AND categoryId = #{categoryId,jdbcType=VARCHAR}
+      </if>
+      <if test="agentId != null" >
+        AND agentId = #{agentId,jdbcType=VARCHAR}
+      </if>
+
+      <if test="orderStatus != null" >
+        AND orderStatus = #{orderStatus,jdbcType=INTEGER}
+      </if>
+      <if test="outTradeNo != null" >
+        AND outTradeNo = #{outTradeNo,jdbcType=VARCHAR}
+      </if>
+      <if test="payType != null" >
+        AND payType = #{payType,jdbcType=INTEGER}
+      </if>
+      <if test="payTime != null" >
+        AND payTime = #{payTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="hospitalId != null" >
+        AND hospitalId = #{hospitalId,jdbcType=VARCHAR}
+      </if>
+      <if test="cTime != null" >
+        AND cTime = #{cTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="goodsOrdersId != null" >
+        AND goodsOrdersId = #{goodsOrdersId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    order by cTime DESC
+
+  </select>
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxGoodsOrders" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_goods_orders
+    where goodsOrdersId = #{goodsOrdersId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_goods_orders
+    where goodsOrdersId = #{goodsOrdersId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxGoodsOrders" >
+    insert into wx_goods_orders (goodsOrdersId, totalPrice, totalNum, 
+      price,userId, categoryId,agentId, orderStatus,
+      outTradeNo, payType, payTime, 
+      hospitalId, cTime)
+    values (#{goodsOrdersId,jdbcType=VARCHAR}, #{totalPrice,jdbcType=DECIMAL}, #{totalNum,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL},#{userId,jdbcType=VARCHAR},#{agentId,jdbcType=VARCHAR}, #{categoryId,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER},
+      #{outTradeNo,jdbcType=VARCHAR}, #{payType,jdbcType=INTEGER}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{hospitalId,jdbcType=VARCHAR}, #{cTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxGoodsOrders" >
+    insert into wx_goods_orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsOrdersId != null" >
+        goodsOrdersId,
+      </if>
+      <if test="totalPrice != null" >
+        totalPrice,
+      </if>
+      <if test="totalNum != null" >
+        totalNum,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="agentId != null" >
+        agentId,
+      </if>
+
+      <if test="categoryId != null" >
+        categoryId,
+      </if>
+      <if test="orderStatus != null" >
+        orderStatus,
+      </if>
+      <if test="outTradeNo != null" >
+        outTradeNo,
+      </if>
+      <if test="payType != null" >
+        payType,
+      </if>
+      <if test="payTime != null" >
+        payTime,
+      </if>
+      <if test="hospitalId != null" >
+        hospitalId,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsOrdersId != null" >
+        #{goodsOrdersId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalNum != null" >
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=VARCHAR},
+      </if>
+
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="outTradeNo != null" >
+        #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hospitalId != null" >
+        #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxGoodsOrders" >
+    update wx_goods_orders
+    <set >
+      <if test="totalPrice != null" >
+        totalPrice = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalNum != null" >
+        totalNum = #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+
+      <if test="agentId != null" >
+        agentId = #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        categoryId = #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        orderStatus = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="outTradeNo != null" >
+        outTradeNo = #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        payType = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        payTime = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hospitalId != null" >
+        hospitalId = #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where goodsOrdersId = #{goodsOrdersId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxGoodsOrders" >
+    update wx_goods_orders
+    set totalPrice = #{totalPrice,jdbcType=DECIMAL},
+      totalNum = #{totalNum,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      userId = #{userId,jdbcType=VARCHAR},
+      agentId = #{agentId,jdbcType=VARCHAR},
+      categoryId = #{categoryId,jdbcType=VARCHAR},
+      orderStatus = #{orderStatus,jdbcType=INTEGER},
+      outTradeNo = #{outTradeNo,jdbcType=VARCHAR},
+      payType = #{payType,jdbcType=INTEGER},
+      payTime = #{payTime,jdbcType=TIMESTAMP},
+      hospitalId = #{hospitalId,jdbcType=VARCHAR},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where goodsOrdersId = #{goodsOrdersId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getGoodsOrdersList" resultType="java.util.Map"  >
+    select
+    IFNULL(g.goodsOrdersId,'')goodsOrdersId,
+
+    IFNULL(u.nickName,'')nickName,
+    IFNULL(u.userPhone,'')userPhone,
+    IFNULL(ca.categoryName,'')categoryName,
+    IFNULL(g.totalPrice,0)totalPrice,
+    IFNULL(g.orderStatus,0)orderStatus,
+    IFNULL(h.hospitalName,'')hospitalName,
+    IFNULL(g.totalNum,0)totalNum,
+    IFNULL(g.cTime,'')cTime
+    from wx_goods_orders g
+
+    LEFT JOIN wx_user u ON   u.userId=g.userId
+
+    LEFT JOIN wx_category ca ON  ca.categoryId=g.categoryId
+
+    LEFT JOIN wx_hospital h ON   h.hospitalId=g.hospitalId
+    where 1=1
+    <if test="goodsOrdersId != null and goodsOrdersId != ''">
+      AND g.goodsOrdersId LIKE CONCAT('%',#{goodsOrdersId},'%')
+    </if>
+
+    <if test="userPhone != null and userPhone !=''" >
+      AND u.userPhone LIKE CONCAT('%',#{userPhone},'%')
+    </if>
+    <if test="categoryId != null and categoryId !=''" >
+      AND ca.categoryId = #{categoryId}
+    </if>
+    ORDER BY g.cTime DESC
+  </select>
+
+
+  <select id="getGoodsOrders" resultType="java.util.Map"  >
+    select
+    IFNULL(g.goodsOrdersId,'')goodsOrdersId,
+    IFNULL(u.nickName,'')nickName,
+    IFNULL(u.userPhone,'')userPhone,
+    IFNULL(ca.categoryName,'')categoryName,
+    IFNULL(g.totalPrice,0)totalPrice,
+    IFNULL(g.orderStatus,0)orderStatus,
+    IFNULL(h.hospitalName,'')hospitalName,
+    IFNULL(g.totalNum,0)totalNum,
+    IFNULL(h.hospitalAddress,'')hospitalAddress,
+    IFNULL(g.payTime,'')payTime,
+    IFNULL(g.agentId,'')agentId,
+    IFNULL(g.cTime,'')cTime
+    from wx_goods_orders g
+    LEFT JOIN wx_user u ON   u.userId=g.userId
+    LEFT JOIN wx_category ca ON  ca.categoryId=g.categoryId
+    LEFT JOIN wx_hospital h ON   h.hospitalId=g.hospitalId
+    where g.goodsOrdersId=#{goodsOrdersId}
+  </select>
+
+
+  <select id="getGoodsOrderCount" resultType="java.lang.Integer"  >
+    select
+    IFNULL(count(1),0)
+    from wx_goods_orders g
+    where  g.orderStatus!=3
+    <if test="categoryId != null and categoryId !=''" >
+
+      AND g.categoryId = #{categoryId}
+    </if>
+  </select>
+
+  <select id="getSevenOrderList" resultType="map">
+    select a.click_date as ctime,IFNULL(b.orderPrice,0) as fee
+    from (
+    SELECT curdate() as click_date
+    union all
+    SELECT date_sub(curdate(), interval 1 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 2 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 3 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 4 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 5 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 6 day) as click_date
+    ) a left join (
+    select date(od.cTime) as datetime, sum(od.totalPrice) as orderPrice
+    from wx_goods_orders od
+    where  od.orderStatus!=3
+    group by date(od.cTime)
+    ) b on a.click_date = b.datetime ORDER BY date(ctime) asc
+  </select>
+
+
+  <select id="getMonthOrderList" resultType="map">
+    select a.click_date as ctime,IFNULL(b.orderPrice,0) as fee
+    from (
+      SELECT curdate() as click_date
+    union all
+    SELECT date_sub(curdate(), interval 1 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 2 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 3 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 4 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 5 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 6 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 7 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 8 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 9 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 10 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 11 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 12 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 13 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 14 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 15 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 16 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 17 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 18 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 19 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 20 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 21 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 22 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 23 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 24 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 25 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 26 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 27 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 28 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 29 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 30 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 31 day) as click_date
+    ) a left join (
+    select date(od.cTime) as datetime, sum(od.totalPrice) as orderPrice
+    from wx_goods_orders od
+    where  od.orderStatus!=3
+    group by date(od.cTime)
+    ) b on a.click_date = b.datetime ORDER BY date(ctime) asc
+  </select>
+
+  <select id="selectByOutTradeNo" resultType="com.sharebedapp.jijl.model.WxGoodsOrders" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_goods_orders
+    where outTradeNo = #{outTradeNo,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectGoodsOrdersInfo" resultType="com.sharebedapp.jijl.model.wrap.GoodsOrdersInfo">
+    select  wh.hospitalName ,gd.orderStatus ,wc.categoryName, gd.totalNum ,
+    gd.totalPrice, gd.goodsOrdersId, gd.payTime ,gd.outTradeNo
+    from wx_goods_orders gd
+    left join wx_hospital wh on wh.hospitalId = gd.hospitalId
+    left join wx_category wc on wc.categoryId = gd.categoryId
+    where gd.userId = #{userId}
+    <if test="orderStatus != null" >
+      AND orderStatus = #{orderStatus,jdbcType=INTEGER}
+    </if>
+    order by gd.cTime DESC
+  </select>
+
+</mapper>

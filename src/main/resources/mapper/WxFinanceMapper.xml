@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxFinanceMapper" >
+
+  <sql id="Base_Column_List" >
+    financeId, userId, hospitalId,agentId, balance, outTradeNo, revenueAmount, expensesAmount,
+    financeType, payType, balanceType, isFlag, cTime
+  </sql>
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxFinance" parameterType="com.sharebedapp.jijl.model.WxFinance" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_finance
+    <trim prefix="where" prefixOverrides="and | or">
+
+      <if test="userId != null" >
+       AND userId = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="hospitalId != null" >
+        AND hospitalId = #{hospitalId,jdbcType=VARCHAR}
+      </if>
+      <if test="agentId != null" >
+        AND agentId = #{agentId,jdbcType=VARCHAR}
+      </if>
+      <if test="balance != null" >
+        AND balance = #{balance,jdbcType=DECIMAL}
+      </if>
+      <if test="outTradeNo != null" >
+        AND outTradeNo = #{outTradeNo,jdbcType=VARCHAR}
+      </if>
+      <if test="revenueAmount != null" >
+        AND revenueAmount = #{revenueAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="expensesAmount != null" >
+        AND expensesAmount = #{expensesAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="financeType != null" >
+        AND financeType = #{financeType,jdbcType=INTEGER}
+      </if>
+      <if test="payType != null" >
+        AND payType = #{payType,jdbcType=INTEGER}
+      </if>
+      <if test="balanceType != null" >
+        AND balanceType = #{balanceType,jdbcType=INTEGER}
+      </if>
+      <if test="isFlag != null" >
+        AND isFlag = #{isFlag,jdbcType=INTEGER}
+      </if>
+      <if test="cTime != null" >
+        AND cTime = #{cTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="financeId != null" >
+        AND financeId = #{financeId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+      order by cTime DESC
+  </select>
+
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxFinance" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_finance
+    where financeId = #{financeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_finance
+    where financeId = #{financeId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxFinance" >
+    insert into wx_finance (financeId, userId, hospitalId, agentId,
+      balance, outTradeNo, revenueAmount, 
+      expensesAmount, financeType, payType, 
+      balanceType, isFlag, cTime
+      )
+    values (#{financeId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{hospitalId,jdbcType=VARCHAR}, #{agentId,jdbcType=VARCHAR},
+      #{balance,jdbcType=DECIMAL}, #{outTradeNo,jdbcType=VARCHAR}, #{revenueAmount,jdbcType=DECIMAL}, 
+      #{expensesAmount,jdbcType=DECIMAL}, #{financeType,jdbcType=INTEGER}, #{payType,jdbcType=INTEGER}, 
+      #{balanceType,jdbcType=INTEGER}, #{isFlag,jdbcType=INTEGER}, #{cTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxFinance" >
+    insert into wx_finance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="financeId != null" >
+        financeId,
+      </if>
+      <if test="agentId != null" >
+        agentId,
+      </if>
+
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="hospitalId != null" >
+        hospitalId,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="outTradeNo != null" >
+        outTradeNo,
+      </if>
+      <if test="revenueAmount != null" >
+        revenueAmount,
+      </if>
+      <if test="expensesAmount != null" >
+        expensesAmount,
+      </if>
+      <if test="financeType != null" >
+        financeType,
+      </if>
+      <if test="payType != null" >
+        payType,
+      </if>
+      <if test="balanceType != null" >
+        balanceType,
+      </if>
+      <if test="isFlag != null" >
+        isFlag,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="financeId != null" >
+        #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=VARCHAR},
+      </if>
+
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalId != null" >
+        #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="outTradeNo != null" >
+        #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="revenueAmount != null" >
+        #{revenueAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="expensesAmount != null" >
+        #{expensesAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="financeType != null" >
+        #{financeType,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="balanceType != null" >
+        #{balanceType,jdbcType=INTEGER},
+      </if>
+      <if test="isFlag != null" >
+        #{isFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxFinance" >
+    update wx_finance
+    <set >
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalId != null" >
+        hospitalId = #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        agentId = #{agentId,jdbcType=VARCHAR},
+      </if>
+
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="outTradeNo != null" >
+        outTradeNo = #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="revenueAmount != null" >
+        revenueAmount = #{revenueAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="expensesAmount != null" >
+        expensesAmount = #{expensesAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="financeType != null" >
+        financeType = #{financeType,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        payType = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="balanceType != null" >
+        balanceType = #{balanceType,jdbcType=INTEGER},
+      </if>
+      <if test="isFlag != null" >
+        isFlag = #{isFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where financeId = #{financeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxFinance" >
+    update wx_finance
+    set userId = #{userId,jdbcType=VARCHAR},
+      hospitalId = #{hospitalId,jdbcType=VARCHAR},
+      agentId = #{agentId,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      outTradeNo = #{outTradeNo,jdbcType=VARCHAR},
+      revenueAmount = #{revenueAmount,jdbcType=DECIMAL},
+      expensesAmount = #{expensesAmount,jdbcType=DECIMAL},
+      financeType = #{financeType,jdbcType=INTEGER},
+      payType = #{payType,jdbcType=INTEGER},
+      balanceType = #{balanceType,jdbcType=INTEGER},
+      isFlag = #{isFlag,jdbcType=INTEGER},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where financeId = #{financeId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByOutTradeNo" resultType="com.sharebedapp.jijl.model.WxFinance"  >
+    select
+    <include refid="Base_Column_List" />
+    from wx_finance
+    where outTradeNo = #{outTradeNo}
+  </select>
+
+  <select id="selectByOutTradeNoAndConsumerId" resultType="com.sharebedapp.jijl.model.WxFinance"  >
+    select <include refid="Base_Column_List" /> from wx_finance
+    where outTradeNo = #{outTradeNo} and financeType = 4 and isFlag = 2
+    <if test="userId != null" >
+      AND userId = #{userId,jdbcType=VARCHAR}
+    </if>
+    <if test="agentId != null" >
+      AND agentId = #{agentId,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="balance" resultType="com.sharebedapp.jijl.model.WxFinance"  >
+    select <include refid="Base_Column_List" /> from wx_finance
+    where userId = #{userId} AND balanceType = #{balanceType} AND isFlag=2
+    ORDER BY cTime DESC LIMIT 1
+  </select>
+
+
+  <select id="getFinanceList" resultType="com.sharebedapp.jijl.model.wrap.FinanceInfo">
+    select wf.financeId , wf.outTradeNo, wf.userId ,wf.agentId ,
+    wc.categoryName, wh.hospitalName,wgo.totalNum as num ,
+    (select deptName from wx_dept where deptId = we.departmentId) as dept,
+    (select deptName from wx_dept where deptId = we.wardId ) as ward,
+    (select deptName from wx_dept where deptId = we.bedNumber ) as bedNumber
+    from wx_finance wf
+    left join wx_user wu on wu.userId = wf.userId
+    left join wx_agent wa on wa.agentId = wf.agentId
+    left join wx_goods_orders wgo on wgo.outTradeNo = wf.outTradeNo
+    left join wx_share_orders wso on wso.outTradeNo = wf.outTradeNo
+    left join wx_hospital wh on wh.hospitalId = wf.hospitalId
+    left join wx_equipment we on we.equipmentId = wso.equipmentId
+    left join wx_dept wd on wd.deptId = we.departmentId
+    left join wx_category wc on wc.categoryId = wgo.categoryId or wc.categoryId = we.categoryId
+    where wf.isFlag = 2
+    <if test="hospitalName != null and hospitalName != ''" >
+      and wh.hospitalName like concat('%',#{hospitalName,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="categoryId != null and categoryId != ''" >
+      and wc.categoryId = #{categoryId,jdbcType=VARCHAR}
+    </if>
+    <if test="financeType != null" >
+      and wf.financeType = #{financeType,jdbcType=INTEGER}
+    </if>
+
+  </select>
+
+
+
+  <select id="getByAgentId" resultType="com.sharebedapp.jijl.model.WxFinance"  >
+    select
+    <include refid="Base_Column_List" />
+    from wx_finance
+    where agentId = #{agentId} AND  balanceType = 1 AND isFlag=2
+    ORDER BY cTime DESC LIMIT 1
+  </select>
+  <select id="getFinanceBailList" resultType="java.util.Map"  >
+    select
+    IFNULL(u.nickName,'')nickName,
+    IFNULL(u.userPhone,'')userPhone,
+    IFNULL(f.balance,0)balance,
+    IFNULL(f.cTime,'')cTime
+    from wx_finance f
+    LEFT JOIN wx_user u ON f.userId=u.userId
+    where 1=1
+    AND f.financeType=6 AND f.isFlag=2 AND f.balanceType=2
+    <if test="userPhone != null and userPhone != ''">
+      AND u.userPhone LIKE CONCAT('%',#{userPhone},'%')
+    </if>
+    <if test="nickName != null and nickName != ''">
+      AND u.nickName LIKE CONCAT('%',#{nickName},'%')
+    </if>
+    ORDER BY f.cTime  DESC
+  </select>
+
+  <select id="selectByCTime" resultType="com.sharebedapp.jijl.model.WxFinance">
+    select <include refid="Base_Column_List"/>
+    from wx_finance
+    where cTime &gt; #{start} and cTime &lt; #{end}
+    and financeType = 4 and isFlag = 2
+    <if test="userId != null and userId != ''">
+      AND userId = #{userId}
+    </if>
+    <if test="agentId != null and agentId != ''">
+      AND agentId = #{agentId}
+    </if>
+  </select>
+
+  <select id="calculateRevenuePlatformGood" resultType="java.math.BigDecimal">
+    select sum(expensesAmount)
+    from wx_finance
+    where isFlag = 2 and financeType = 3
+  </select>
+
+  <select id="calculateAgentRevenue" resultType="java.math.BigDecimal">
+    select sum(revenueAmount) as agentRevenue
+    from wx_finance
+    where isFlag = 2 and financeType = 4 and agentId is not null
+  </select>
+
+  <select id="calculateBuyerRevenue" resultType="java.math.BigDecimal">
+    select sum(revenueAmount) as buyerRevenue
+    from wx_finance
+    where isFlag = 2 and financeType = 4 and userId is not null ;
+  </select>
+
+  <select id="calculateRoleRevenue" resultType="com.sharebedapp.jijl.model.wrap.AgentRevenue">
+    select wr.roleName as agentRoleName ,
+       wr.roleId as agentRoleId ,
+       sum(wf.revenueAmount) as agentRevenue
+    from wx_finance wf left join wx_agent wa on wa.agentId = wf.agentId
+    left join wx_role wr on wr.roleId = wa.roleId
+    where wf.financeType = 4 and wa.agentId is not null
+    group by wr.roleId
+  </select>
+  <select id="calculateRevenueByAgentId" resultType="java.math.BigDecimal">
+
+    select sum(revenueAmount) from wx_finance
+    where isFlag = 2 and financeType = 4 and agentId = #{agentId}
+
+  </select>
+</mapper>

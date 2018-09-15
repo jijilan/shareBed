@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxUserMapper" >
+
+
+  <sql id="Base_Column_List" >
+    userId, nickName, avatarUrl, gender, city, province, country, userPhone, openId, 
+    userType, isPurchaser, companyName, companyPhone, isFlag, cTime
+  </sql>
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxUser" parameterType="com.sharebedapp.jijl.model.WxUser" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_user
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="nickName != null" >
+      AND  nickName = #{nickName,jdbcType=VARCHAR}
+      </if>
+      <if test="avatarUrl != null" >
+        AND  avatarUrl = #{avatarUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="gender != null" >
+        AND  gender = #{gender,jdbcType=INTEGER}
+      </if>
+      <if test="city != null" >
+        AND  city = #{city,jdbcType=VARCHAR}
+      </if>
+      <if test="province != null" >
+        AND  province = #{province,jdbcType=VARCHAR}
+      </if>
+      <if test="country != null" >
+        AND  country = #{country,jdbcType=VARCHAR}
+      </if>
+      <if test="userPhone != null" >
+        AND  userPhone = #{userPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="openId != null" >
+        AND  openId = #{openId,jdbcType=VARCHAR}
+      </if>
+      <if test="userType != null" >
+        AND  userType = #{userType,jdbcType=INTEGER}
+      </if>
+      <if test="isPurchaser != null" >
+        AND   isPurchaser = #{isPurchaser,jdbcType=INTEGER}
+      </if>
+      <if test="companyName != null" >
+        AND   companyName = #{companyName,jdbcType=VARCHAR}
+      </if>
+      <if test="companyPhone != null" >
+        AND  companyPhone = #{companyPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="isFlag != null" >
+        AND   isFlag = #{isFlag,jdbcType=INTEGER}
+      </if>
+      <if test="cTime != null" >
+        AND   cTime = #{cTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userId != null" >
+        AND   userId = #{userId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+      order by cTime DESC
+  </select>
+
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxUser" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_user
+    where userId = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_user
+    where userId = #{userId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxUser" >
+    insert into wx_user (userId, nickName, avatarUrl, 
+      gender, city, province, 
+      country, userPhone, openId, 
+      userType, isPurchaser, companyName, 
+      companyPhone, isFlag, cTime
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{country,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=INTEGER}, #{isPurchaser,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, 
+      #{companyPhone,jdbcType=VARCHAR}, #{isFlag,jdbcType=INTEGER}, #{cTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxUser" >
+    insert into wx_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="nickName != null" >
+        nickName,
+      </if>
+      <if test="avatarUrl != null" >
+        avatarUrl,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="userPhone != null" >
+        userPhone,
+      </if>
+      <if test="openId != null" >
+        openId,
+      </if>
+      <if test="userType != null" >
+        userType,
+      </if>
+      <if test="isPurchaser != null" >
+        isPurchaser,
+      </if>
+      <if test="companyName != null" >
+        companyName,
+      </if>
+      <if test="companyPhone != null" >
+        companyPhone,
+      </if>
+      <if test="isFlag != null" >
+        isFlag,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarUrl != null" >
+        #{avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="isPurchaser != null" >
+        #{isPurchaser,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null" >
+        #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="isFlag != null" >
+        #{isFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxUser" >
+    update wx_user
+    <set >
+      <if test="nickName != null" >
+        nickName = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarUrl != null" >
+        avatarUrl = #{avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        userPhone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        openId = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        userType = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="isPurchaser != null" >
+        isPurchaser = #{isPurchaser,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        companyName = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null" >
+        companyPhone = #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="isFlag != null" >
+        isFlag = #{isFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userId = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxUser" >
+    update wx_user
+    set nickName = #{nickName,jdbcType=VARCHAR},
+      avatarUrl = #{avatarUrl,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      userPhone = #{userPhone,jdbcType=VARCHAR},
+      openId = #{openId,jdbcType=VARCHAR},
+      userType = #{userType,jdbcType=INTEGER},
+      isPurchaser = #{isPurchaser,jdbcType=INTEGER},
+      companyName = #{companyName,jdbcType=VARCHAR},
+      companyPhone = #{companyPhone,jdbcType=VARCHAR},
+      isFlag = #{isFlag,jdbcType=INTEGER},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where userId = #{userId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getByOpenId" resultType="com.sharebedapp.jijl.model.WxUser"  >
+    select
+    <include refid="Base_Column_List" />
+    from wx_user
+    where openId = #{openId}
+  </select>
+
+  <select id="getUserList"  resultType="java.util.Map" >
+    select
+    IFNULL(u.userId,'')userId,
+    IFNULL(u.nickName,'')nickName,
+    IFNULL(u.userPhone,'')userPhone,
+    IFNULL(u.userType,0)userType,
+    IFNULL(u.isPurchaser,0)isPurchaser,
+    IFNULL(u.isFlag,0)isFlag,
+    IFNULL((select IFNULL(f.balance,0) from wx_finance f where u.userId=f.userId  AND f.balanceType=1 AND f.isFlag=2 AND f.balanceType=1 ORDER BY f.cTime  DESC LIMIT 1),0)balance,
+
+    IFNULL((select  IFNULL(f.balance,0) from wx_finance f where u.userId=f.userId AND f.balanceType=2 AND f.isFlag=2  AND f.balanceType=2  ORDER BY f.cTime DESC LIMIT 1),0)cashBalance
+    from wx_user u
+    where 1=1
+    <if test="nickName != null and nickName != ''">
+      AND u.nickName LIKE CONCAT('%',#{nickName},'%')
+    </if>
+    <if test="userPhone != null and userPhone !=''" >
+      AND u.userPhone LIKE CONCAT('%',#{userPhone},'%')
+    </if>
+    ORDER BY u.cTime DESC
+  </select>
+
+  <select id="getUser" resultType="java.util.Map"  >
+    select
+    IFNULL(u.nickName,'')nickName,
+    IFNULL(u.userPhone,'')userPhone,
+    IFNULL(u.userType,0)userType,
+    IFNULL(u.companyName,'')companyName,
+    IFNULL(u.companyPhone,'')companyPhone
+    from wx_user u
+    where u.userId = #{userId}
+  </select>
+
+  <select id="getByUserPhone" resultType="com.sharebedapp.jijl.model.WxUser"  >
+    select
+    <include refid="Base_Column_List" />
+    from wx_user
+    where userPhone = #{userPhone} AND userType!=1 AND isFlag=1
+  </select>
+
+  <select id="getUserByPhone" resultType="com.sharebedapp.jijl.model.WxUser">
+    select <include refid="Base_Column_List"/>
+    from wx_user where userPhone = #{userPhone} and isFlag = 1
+  </select>
+
+
+
+  <select id="getByOpenIdAnduserPhone" resultType="com.sharebedapp.jijl.model.WxUser">
+    select <include refid="Base_Column_List"/>
+    from wx_user where userPhone = #{userPhone} and openId = #{openId}
+  </select>
+
+  <select id="getByOpenIdAndiIsFlag" resultType="com.sharebedapp.jijl.model.WxUser">
+    select <include refid="Base_Column_List"/>
+    from wx_user where openId = #{openId}
+    AND isFlag IN
+    <foreach collection="isFlags" item="item" index="index" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+
+  <delete id="delUserByTaskUverdue">
+    DELETE FROM wx_user WHERE userId IN(SELECT b.userId FROM(SELECT b.userId FROM wx_user b WHERE b.isFlag=0 AND UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(b.cTime)>300) b)
+  </delete>
+</mapper>

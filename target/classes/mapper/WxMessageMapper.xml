@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxMessageMapper" >
+
+  <sql id="Base_Column_List" >
+    messageId, messageType, title, context, isRead, cTime, userId
+  </sql>
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxMessage" parameterType="com.sharebedapp.jijl.model.WxMessage" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_message
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="messageType != null" >
+       AND messageType = #{messageType,jdbcType=INTEGER}
+      </if>
+      <if test="title != null and title!=''" >
+        AND   title = #{title,jdbcType=VARCHAR}
+      </if>
+      <if test="context != null and context!=''" >
+        AND context = #{context,jdbcType=VARCHAR}
+      </if>
+      <if test="isRead != null" >
+        AND  isRead = #{isRead,jdbcType=INTEGER}
+      </if>
+      <if test="cTime != null" >
+        AND cTime &gt; #{cTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userId != null and userId!=''" >
+        AND  userId = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="messageId != null and messageId!=''" >
+        AND  messageId = #{messageId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+      order by cTime DESC
+
+  </select>
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxMessage" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_message
+    where messageId = #{messageId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_message
+    where messageId = #{messageId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxMessage" >
+    insert into wx_message (messageId, messageType, title, 
+      context, isRead, cTime, 
+      userId)
+    values (#{messageId,jdbcType=VARCHAR}, #{messageType,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{context,jdbcType=VARCHAR}, #{isRead,jdbcType=INTEGER}, #{cTime,jdbcType=TIMESTAMP}, 
+      #{userId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxMessage" >
+    insert into wx_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="messageId != null" >
+        messageId,
+      </if>
+      <if test="messageType != null" >
+        messageType,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="context != null" >
+        context,
+      </if>
+      <if test="isRead != null" >
+        isRead,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="messageId != null" >
+        #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="messageType != null" >
+        #{messageType,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="context != null" >
+        #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null" >
+        #{isRead,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxMessage" >
+    update wx_message
+    <set >
+      <if test="messageType != null" >
+        messageType = #{messageType,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="context != null" >
+        context = #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null" >
+        isRead = #{isRead,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where messageId = #{messageId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxMessage" >
+    update wx_message
+    set messageType = #{messageType,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      context = #{context,jdbcType=VARCHAR},
+      isRead = #{isRead,jdbcType=INTEGER},
+      cTime = #{cTime,jdbcType=TIMESTAMP},
+      userId = #{userId,jdbcType=VARCHAR}
+    where messageId = #{messageId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByCondition" resultType="com.sharebedapp.jijl.model.WxMessage">
+    select <include refid="Base_Column_List"/>
+    from wx_message
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="title != null and title!=''" >
+        AND title like concat('%',#{title,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="start != null" >
+        AND cTime &gt; #{start,jdbcType=TIMESTAMP}
+      </if>
+      <if test="end != null" >
+        AND cTime &lt; #{end,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+    order by ctime desc
+  </select>
+</mapper>

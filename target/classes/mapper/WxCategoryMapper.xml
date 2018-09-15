@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxCategoryMapper" >
+
+  <sql id="Base_Column_List" >
+    categoryId, categoryName, categoryPic, categoryDesc, cTime
+  </sql>
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxCategory" parameterType="com.sharebedapp.jijl.model.WxCategory" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_category
+    <trim prefix="where" prefixOverrides="and | or">
+
+      <if test="categoryName != null" >
+       AND categoryName = #{categoryName,jdbcType=VARCHAR}
+      </if>
+      <if test="categoryPic != null" >
+        AND categoryPic = #{categoryPic,jdbcType=VARCHAR}
+      </if>
+      <if test="categoryDesc != null" >
+        AND categoryDesc = #{categoryDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="cTime != null" >
+        AND cTime = #{cTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="categoryId != null" >
+        AND  categoryId = #{categoryId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+      order by cTime DESC
+
+  </select>
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxCategory" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_category
+    where categoryId = #{categoryId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_category
+    where categoryId = #{categoryId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxCategory" >
+    insert into wx_category (categoryId, categoryName, categoryPic,
+      categoryDesc, cTime)
+    values (#{categoryId,jdbcType=VARCHAR}, #{categoryName,jdbcType=VARCHAR}, #{categoryPic,jdbcType=VARCHAR},
+      #{categoryDesc,jdbcType=VARCHAR}, #{cTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxCategory" >
+    insert into wx_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="categoryId != null" >
+        categoryId,
+      </if>
+      <if test="categoryName != null" >
+        categoryName,
+      </if>
+      <if test="categoryPic != null" >
+        categoryPic,
+      </if>
+      <if test="categoryDesc != null" >
+        categoryDesc,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null" >
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryPic != null" >
+        #{categoryPic,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryDesc != null" >
+        #{categoryDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxCategory" >
+    update wx_category
+    <set >
+      <if test="categoryName != null" >
+        categoryName = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryPic != null" >
+        categoryPic = #{categoryPic,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryDesc != null" >
+        categoryDesc = #{categoryDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where categoryId = #{categoryId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxCategory" >
+    update wx_category
+    set categoryName = #{categoryName,jdbcType=VARCHAR},
+      categoryPic = #{categoryPic,jdbcType=VARCHAR},
+      categoryDesc = #{categoryDesc,jdbcType=VARCHAR},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where categoryId = #{categoryId,jdbcType=VARCHAR}
+  </update>
+
+    <select id="getCategoryList" resultType="java.util.Map"  >
+        select
+          IFNULL(categoryId,'')categoryId,
+          IFNULL(categoryName,'')categoryName,
+          IFNULL(categoryPic,'')categoryPic,
+          IFNULL(categoryDesc,'')categoryDesc
+        from wx_category
+        where 1=1 ORDER BY cTime DESC
+    </select>
+
+  <select id="getCategorys" resultType="com.sharebedapp.jijl.model.WxCategory" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_category
+    where 1=1
+  </select>
+
+  <select id="getCategoryByName" resultType="java.lang.Integer">
+    select count(1) from wx_category where categoryName = #{categoryName}
+  </select>
+
+</mapper>

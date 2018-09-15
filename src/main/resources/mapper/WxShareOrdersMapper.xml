@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxShareOrdersMapper">
+    <sql id="Base_Column_List">
+    shareOrderId, equipmentId,rechargeId, hospitalId, leaseStartTime, leaseEndTime, price, outTradeNo,
+    availableTimeLength, payTime, payType, orderStatus, userId, startTime, endTime, isFlag, 
+    cTime
+  </sql>
+
+    <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxShareOrders"
+            parameterType="com.sharebedapp.jijl.model.WxShareOrders">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_share_orders
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="equipmentId != null">
+                AND equipmentId = #{equipmentId,jdbcType=VARCHAR}
+            </if>
+
+            <if test="rechargeId != null">
+                AND rechargeId = #{rechargeId,jdbcType=VARCHAR}
+            </if>
+
+            <if test="hospitalId != null">
+                AND hospitalId = #{hospitalId,jdbcType=VARCHAR}
+            </if>
+            <if test="leaseStartTime != null">
+                AND leaseStartTime = #{leaseStartTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="leaseEndTime != null">
+                AND leaseEndTime = #{leaseEndTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="price != null">
+                AND price = #{price,jdbcType=DECIMAL}
+            </if>
+            <if test="outTradeNo != null">
+                AND outTradeNo = #{outTradeNo,jdbcType=VARCHAR}
+            </if>
+            <if test="availableTimeLength != null">
+                AND availableTimeLength = #{availableTimeLength,jdbcType=BIGINT}
+            </if>
+            <if test="payTime != null">
+                AND payTime = #{payTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="payType != null">
+                AND payType = #{payType,jdbcType=INTEGER}
+            </if>
+            <if test="orderStatus != null">
+                AND orderStatus = #{orderStatus,jdbcType=INTEGER}
+            </if>
+            <if test="userId != null">
+                AND userId = #{userId,jdbcType=VARCHAR}
+            </if>
+            <if test="startTime != null">
+                AND startTime = #{startTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="endTime != null">
+                AND endTime = #{endTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="isFlag != null">
+                AND isFlag = #{isFlag,jdbcType=INTEGER}
+            </if>
+            <if test="cTime != null">
+                AND cTime = #{cTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="shareOrderId != null">
+                AND shareOrderId = #{shareOrderId,jdbcType=VARCHAR}
+            </if>
+        </trim>
+        order by cTime DESC
+    </select>
+
+    <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxShareOrders"
+            parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_share_orders
+        where shareOrderId = #{shareOrderId,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wx_share_orders
+    where shareOrderId = #{shareOrderId,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxShareOrders">
+    insert into wx_share_orders (shareOrderId, equipmentId,rechargeId, hospitalId,
+      leaseStartTime, leaseEndTime, price, 
+      outTradeNo, availableTimeLength, payTime, 
+      payType, orderStatus, userId, 
+      startTime, endTime, isFlag, 
+      cTime)
+    values (#{shareOrderId,jdbcType=VARCHAR}, #{equipmentId,jdbcType=VARCHAR},#{rechargeId,jdbcType=VARCHAR}, #{hospitalId,jdbcType=VARCHAR},
+      #{leaseStartTime,jdbcType=TIMESTAMP}, #{leaseEndTime,jdbcType=TIMESTAMP}, #{price,jdbcType=DECIMAL}, 
+      #{outTradeNo,jdbcType=VARCHAR}, #{availableTimeLength,jdbcType=BIGINT}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{payType,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{isFlag,jdbcType=INTEGER}, 
+      #{cTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxShareOrders">
+        insert into wx_share_orders
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="shareOrderId != null">
+                shareOrderId,
+            </if>
+            <if test="equipmentId != null">
+                equipmentId,
+            </if>
+            <if test="rechargeId != null">
+                rechargeId,
+            </if>
+            <if test="hospitalId != null">
+                hospitalId,
+            </if>
+            <if test="leaseStartTime != null">
+                leaseStartTime,
+            </if>
+            <if test="leaseEndTime != null">
+                leaseEndTime,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="outTradeNo != null">
+                outTradeNo,
+            </if>
+            <if test="availableTimeLength != null">
+                availableTimeLength,
+            </if>
+            <if test="payTime != null">
+                payTime,
+            </if>
+            <if test="payType != null">
+                payType,
+            </if>
+            <if test="orderStatus != null">
+                orderStatus,
+            </if>
+            <if test="userId != null">
+                userId,
+            </if>
+            <if test="startTime != null">
+                startTime,
+            </if>
+            <if test="endTime != null">
+                endTime,
+            </if>
+            <if test="isFlag != null">
+                isFlag,
+            </if>
+            <if test="cTime != null">
+                cTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="shareOrderId != null">
+                #{shareOrderId,jdbcType=VARCHAR},
+            </if>
+            <if test="equipmentId != null">
+                #{equipmentId,jdbcType=VARCHAR},
+            </if>
+            <if test="rechargeId != null">
+                #{rechargeId,jdbcType=VARCHAR},
+            </if>
+            <if test="hospitalId != null">
+                #{hospitalId,jdbcType=VARCHAR},
+            </if>
+            <if test="leaseStartTime != null">
+                #{leaseStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="leaseEndTime != null">
+                #{leaseEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="outTradeNo != null">
+                #{outTradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="availableTimeLength != null">
+                #{availableTimeLength,jdbcType=BIGINT},
+            </if>
+            <if test="payTime != null">
+                #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payType != null">
+                #{payType,jdbcType=INTEGER},
+            </if>
+            <if test="orderStatus != null">
+                #{orderStatus,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isFlag != null">
+                #{isFlag,jdbcType=INTEGER},
+            </if>
+            <if test="cTime != null">
+                #{cTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxShareOrders">
+        update wx_share_orders
+        <set>
+            <if test="equipmentId != null">
+                equipmentId = #{equipmentId,jdbcType=VARCHAR},
+            </if>
+            <if test="rechargeId != null">
+                rechargeId = #{rechargeId,jdbcType=VARCHAR},
+            </if>
+            <if test="hospitalId != null">
+                hospitalId = #{hospitalId,jdbcType=VARCHAR},
+            </if>
+            <if test="leaseStartTime != null">
+                leaseStartTime = #{leaseStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="leaseEndTime != null">
+                leaseEndTime = #{leaseEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="outTradeNo != null">
+                outTradeNo = #{outTradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="availableTimeLength != null">
+                availableTimeLength = #{availableTimeLength,jdbcType=BIGINT},
+            </if>
+            <if test="payTime != null">
+                payTime = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payType != null">
+                payType = #{payType,jdbcType=INTEGER},
+            </if>
+            <if test="orderStatus != null">
+                orderStatus = #{orderStatus,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                userId = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                startTime = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                endTime = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isFlag != null">
+                isFlag = #{isFlag,jdbcType=INTEGER},
+            </if>
+            <if test="cTime != null">
+                cTime = #{cTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where shareOrderId = #{shareOrderId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxShareOrders">
+    update wx_share_orders
+    set equipmentId = #{equipmentId,jdbcType=VARCHAR},
+     rechargeId = #{ rechargeId,jdbcType=VARCHAR},
+      hospitalId = #{hospitalId,jdbcType=VARCHAR},
+      leaseStartTime = #{leaseStartTime,jdbcType=TIMESTAMP},
+      leaseEndTime = #{leaseEndTime,jdbcType=TIMESTAMP},
+      price = #{price,jdbcType=DECIMAL},
+      outTradeNo = #{outTradeNo,jdbcType=VARCHAR},
+      availableTimeLength = #{availableTimeLength,jdbcType=BIGINT},
+      payTime = #{payTime,jdbcType=TIMESTAMP},
+      payType = #{payType,jdbcType=INTEGER},
+      orderStatus = #{orderStatus,jdbcType=INTEGER},
+      userId = #{userId,jdbcType=VARCHAR},
+      startTime = #{startTime,jdbcType=TIMESTAMP},
+      endTime = #{endTime,jdbcType=TIMESTAMP},
+      isFlag = #{isFlag,jdbcType=INTEGER},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where shareOrderId = #{shareOrderId,jdbcType=VARCHAR}
+  </update>
+
+    <select id="getShareOrderseList" resultType="java.util.Map">
+        select
+        IFNULL(so.shareOrderId,'')shareOrderId,
+
+        IFNULL(u.nickName,'')nickName,
+        IFNULL(u.userPhone,'')userPhone,
+        IFNULL(ca.categoryName,'')categoryName,
+
+        IFNULL(TIMESTAMPDIFF(second,so.leaseStartTime,so.leaseEndTime),0)consumeTime,
+
+        IFNULL(so.price,0)price,
+        IFNULL(so.cTime,'')cTime,
+        IFNULL(so.payTime,'')payTime,
+
+        IFNULL(h.hospitalName,'')hospitalName,
+        IFNULL(so.equipmentId,'')equipmentId
+
+        from wx_share_orders so
+        LEFT JOIN wx_user u ON u.userId=so.userId
+        LEFT JOIN wx_equipment eq ON eq.equipmentId=so.equipmentId
+        LEFT JOIN wx_category ca ON ca.categoryId=eq.categoryId
+        LEFT JOIN wx_hospital h ON h.hospitalId=so.hospitalId
+        where 1=1
+        <if test="shareOrderId != null and shareOrderId != ''">
+            AND so.shareOrderId LIKE CONCAT('%',#{shareOrderId},'%')
+        </if>
+
+        <if test="userPhone != null and userPhone !=''">
+            AND u.userPhone LIKE CONCAT('%',#{userPhone},'%')
+        </if>
+        <if test="categoryId != null and categoryId !=''">
+            AND ca.categoryId = #{categoryId}
+        </if>
+        <if test="hospitalName != null and hospitalName != ''">
+            AND h.hospitalName LIKE CONCAT('%',#{hospitalName},'%')
+        </if>
+        ORDER BY so.cTime DESC
+    </select>
+
+    <select id="getShareOrderse" resultType="java.util.Map">
+    select
+    IFNULL(so.shareOrderId,'')shareOrderId,
+    IFNULL(so.orderStatus,0)orderStatus,
+    IFNULL(eq.bedNumber,'')bedNumber,
+
+    IFNULL(u.nickName,'')nickName,
+    IFNULL(u.userPhone,'')userPhone,
+    IFNULL(ca.categoryName,'')categoryName,
+
+
+    IFNULL(so.price,0)price,
+    IFNULL(so.cTime,'')cTime,
+    IFNULL(so.payTime,'')payTime,
+
+    IFNULL(h.hospitalAddress,'')hospitalAddress,
+    IFNULL(h.hospitalName,'')hospitalName,
+
+    IFNULL(dde.deptName,'')departName,
+    IFNULL(dde.deptNumber,'')departNumber,
+
+    IFNULL(wde.deptName,'')wardName,
+    IFNULL(wde.deptNumber,'')wardNumber
+
+    from wx_share_orders so
+    LEFT JOIN wx_user u ON   u.userId=so.userId
+    LEFT JOIN wx_equipment  eq  ON eq.equipmentId=so.equipmentId
+    LEFT JOIN wx_category ca ON  ca.categoryId=eq.categoryId
+    LEFT JOIN wx_hospital h ON   h.hospitalId=so.hospitalId
+    LEFT JOIN wx_dept dde ON dde.deptId=eq.departmentId
+    LEFT JOIN wx_dept wde ON wde.deptId=eq.wardId
+    where so.shareOrderId=#{shareOrderId}
+
+  </select>
+
+    <select id="getUserTime" resultType="java.util.Map">
+    select
+    SUM(IFNULL(TIMESTAMPDIFF(second,so.leaseStartTime,so.leaseEndTime),0))sumTime
+    from wx_share_orders so
+    where so.userId=#{userId}
+  </select>
+    <!--共享订单量-->
+    <select id="getShareOrderCount" resultType="java.lang.Integer">
+        select
+        count(1)
+        from wx_share_orders so
+        INNER JOIN wx_equipment eq ON eq.equipmentId=so.equipmentId
+        INNER JOIN wx_category ca ON ca.categoryId=eq.categoryId
+        where so.isFlag=2
+        <if test="categoryId != null and categoryId !=''">
+            AND ca.categoryId = #{categoryId}
+        </if>
+    </select>
+
+    <!--日订共享收入-->
+    <select id="getTodayAccount" resultType="int">
+        select ifnull(SUM(ifnull(od.price,0)),0)
+        from wx_share_orders od
+        INNER JOIN wx_equipment eq ON eq.equipmentId=od.equipmentId
+        INNER JOIN wx_category ca ON ca.categoryId=eq.categoryId
+        where od.orderStatus=3 AND od.isFlag=2
+
+        and TO_DAYS(od.cTime) = TO_DAYS(now())
+
+        <if test="categoryId != null and categoryId !=''">
+            AND ca.categoryId = #{categoryId}
+        </if>
+
+    </select>
+
+
+    <!--月订共享收入-->
+    <select id="getMonthAccount" resultType="int">
+        select ifnull(SUM(ifnull(od.price, 0)),0)
+        from wx_share_orders od
+        INNER JOIN wx_equipment eq ON eq.equipmentId=od.equipmentId
+        INNER JOIN wx_category ca ON ca.categoryId=eq.categoryId
+        where od.orderStatus=3 AND od.isFlag=2
+
+        and date_format(od.cTime, '%Y%m') = date_format(curdate() , '%Y%m')
+
+        <if test="categoryId != null and categoryId !=''">
+            AND ca.categoryId = #{categoryId}
+        </if>
+    </select>
+
+
+    <select id="getSevenOrderList" resultType="map">
+    select a.click_date as ctime,IFNULL(b.orderPrice,0) as fee
+    from (
+    SELECT curdate() as click_date
+    union all
+    SELECT date_sub(curdate(), interval 1 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 2 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 3 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 4 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 5 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 6 day) as click_date
+    ) a left join (
+    select date(od.cTime) as datetime, sum(od.price) as orderPrice
+    from wx_share_orders od
+     WHERE od.orderStatus=3 AND od.isFlag=2
+    group by date(od.cTime)
+    ) b on a.click_date = b.datetime ORDER BY date(ctime) asc
+  </select>
+
+    <select id="getMonthOrderList" resultType="map">
+    select a.click_date as ctime,IFNULL(b.orderPrice,0) as fee
+    from (
+    SELECT curdate() as click_date
+    union all
+    SELECT date_sub(curdate(), interval 1 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 2 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 3 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 4 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 5 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 6 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 7 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 8 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 9 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 10 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 11 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 12 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 13 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 14 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 15 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 16 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 17 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 18 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 19 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 20 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 21 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 22 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 23 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 24 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 25 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 26 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 27 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 28 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 29 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 30 day) as click_date
+    union all
+    SELECT date_sub(curdate(), interval 31 day) as click_date
+    ) a left join (
+    select date(od.cTime) as datetime, sum(od.price) as orderPrice
+    from wx_share_orders od
+     WHERE od.orderStatus=3 AND od.isFlag=2
+    group by date(od.cTime)
+    ) b on a.click_date = b.datetime ORDER BY date(ctime) asc
+  </select>
+
+    <select id="getByoutTradeNo" resultType="com.sharebedapp.jijl.model.WxShareOrders">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_share_orders
+        where outTradeNo=#{outTradeNo}
+    </select>
+
+    <select id="getLastOrders" resultType="com.sharebedapp.jijl.model.sub.WxShareOrdersSub">
+    select
+      so.shareOrderId,
+       so.outTradeNo,
+       so.price,
+       so.availableTimeLength,
+       so.leaseStartTime,
+       so.leaseEndTime,
+       so.startTime,
+       so.endTime,
+       so.orderStatus,
+       eq.equipmentNumber,
+        eq.equipmenLockType,
+         eq.bluetoothName,
+       re.rechargePrice,
+       re.rechargeType,
+       re.rechargePrice,
+       re.overtimePrice,
+       h.hospitalName,
+       dde.deptName,
+       dde.deptNumber,
+        bde.deptName as bedNumber,
+       wde.deptName as wardName,
+       wde.deptNumber as  wardNumber
+
+    from wx_share_orders so
+    LEFT JOIN wx_recharge re ON re.rechargeId=so.rechargeId
+   LEFT JOIN wx_hospital h ON   h.hospitalId=so.hospitalId
+    LEFT JOIN wx_equipment  eq  ON eq.equipmentId=so.equipmentId
+    LEFT JOIN wx_dept dde ON dde.deptId=eq.departmentId
+    LEFT JOIN wx_dept wde ON wde.deptId=eq.wardId
+    LEFT JOIN wx_dept bde ON bde.deptId=eq.bedNumber
+
+    where so.userId=#{userId} AND so.isFlag=2 AND so.orderStatus!=3 ORDER BY so.cTime DESC  LIMIT 1
+  </select>
+
+    <select id="getFrontShareOrderse" resultType="com.sharebedapp.jijl.model.sub.WxShareOrdersSub">
+    select
+       so.shareOrderId,
+       so.outTradeNo,
+       so.price,
+       so.availableTimeLength,
+
+       so.leaseStartTime,
+       so.leaseEndTime,
+       so.startTime,
+       so.endTime,
+       so.orderStatus,
+       eq.equipmentNumber,
+       eq.equipmenLockType,
+       re.rechargePrice,
+       re.rechargeType,
+       re.rechargePrice,
+       re.overtimePrice,
+       h.hospitalName,
+       dde.deptName,
+       dde.deptNumber,
+       eq.bluetoothName,
+       wde.deptName as wardName,
+       wde.deptNumber as  wardNumber,
+       bde.deptName as bedNumber
+
+     from wx_share_orders so
+    LEFT JOIN wx_recharge re ON re.rechargeId=so.rechargeId
+   LEFT JOIN wx_hospital h ON   h.hospitalId=so.hospitalId
+    LEFT JOIN wx_equipment  eq  ON eq.equipmentId=so.equipmentId
+    LEFT JOIN wx_dept dde ON dde.deptId=eq.departmentId
+    LEFT JOIN wx_dept wde ON wde.deptId=eq.wardId
+    LEFT JOIN wx_dept bde ON bde.deptId=eq.bedNumber
+
+    where so.shareOrderId=#{shareOrderId}
+
+  </select>
+
+
+    <select id="getByUserId" resultType="com.sharebedapp.jijl.model.WxShareOrders">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_share_orders
+        where userId=#{userId} AND orderStatus!=3 AND isFlag=2 ORDER BY cTime LIMIT 1
+    </select>
+
+
+
+  <select id="getByUserIdWei" resultType="com.sharebedapp.jijl.model.WxShareOrders">
+    select
+    <include refid="Base_Column_List" />
+    from wx_share_orders
+    where userId=#{userId}  AND  orderStatus=1 AND  isFlag=2 ORDER BY cTime LIMIT 1
+  </select>
+
+  <select id="getByUserIdJin" resultType="com.sharebedapp.jijl.model.WxShareOrders">
+    select
+    <include refid="Base_Column_List" />
+    from wx_share_orders
+    where userId=#{userId}  AND  orderStatus=2 AND isFlag=2 ORDER BY cTime LIMIT 1
+  </select>
+
+  <select id="selectByOutTradeNo" resultType="com.sharebedapp.jijl.model.WxShareOrders">
+    select <include refid="Base_Column_List" />
+    from wx_share_orders
+    where outTradeNo=#{outTradeNo}
+  </select>
+
+  <select id="selectByEquipmentId" resultType="com.sharebedapp.jijl.model.WxShareOrders">
+    select
+    <include refid="Base_Column_List" />
+    from wx_share_orders
+    where equipmentId=#{equipmentId}
+    <if test="startTime != null" >
+      AND cTime &gt; #{startTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endTime != null" >
+      AND cTime &lt; #{endTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="hospitalId != null and hospitalId != ''" >
+      AND hospitalId = #{hospitalId,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+    <select id="selectByCondition" resultType="com.sharebedapp.jijl.model.WxShareOrders">
+        select
+        <include refid="Base_Column_List" />
+        from wx_share_orders
+        where hospitalId=#{hospitalId}
+        <if test="startTime != null" >
+            AND cTime &gt; #{startTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="endTime != null" >
+            AND cTime &lt; #{endTime,jdbcType=TIMESTAMP}
+        </if>
+    </select>
+
+  <select id="getShareOrdersEqNumber" resultType="java.util.Map">
+    select
+    IFNULL(so.outTradeNo,'')outTradeNo
+    from wx_share_orders so
+    INNER JOIN  wx_equipment eq   ON    eq.equipmentId=so.equipmentId
+    where eq.equipmentNumber=#{equipmentNumber} AND  eq.equipmentStatus=2
+    AND so.isFlag=2 AND so.orderStatus=2
+  </select>
+
+  <select id="getUserShareOrdersTimeList" resultType="com.sharebedapp.jijl.model.sub.WxShareOrdersInfo">
+    select
+     distinct(DATE(cTime)) as cTime
+    from wx_share_orders
+    where userId=#{userId}
+    GROUP BY cTime
+    order by cTime desc
+  </select>
+
+  <select id="getUserShareOrdersList" resultType="com.sharebedapp.jijl.model.sub.WxShareOrdersInfo"  >
+    select
+    DATE_FORMAT(cTime,"%H:%i") as cTime,
+    leaseStartTime,
+    leaseEndTime,
+    IFNULL(price,0)price
+    from wx_share_orders
+    where userId=#{userId}
+    AND DATE(cTime)=#{cTime}
+    AND orderStatus=3
+    AND  isFlag=2
+    ORDER BY cTime DESC
+  </select>
+
+    <select id="calculateShareRevenue" resultType="java.math.BigDecimal">
+      select sum(price) as totalShareRevenue from wx_share_orders where isFlag = 2 and orderStatus =3;
+    </select>
+
+</mapper>

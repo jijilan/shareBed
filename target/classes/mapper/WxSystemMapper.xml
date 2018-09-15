@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxSystemMapper" >
+
+  <sql id="Base_Column_List" >
+    systemId, systemType, parameter
+  </sql>
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxSystem" parameterType="com.sharebedapp.jijl.model.WxSystem" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_system
+    <trim prefix="where" prefixOverrides="and | or">
+
+      <if test="systemType != null" >
+       AND systemType = #{systemType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter != null" >
+        AND parameter = #{parameter,jdbcType=VARCHAR}
+      </if>
+      <if test="systemId != null" >
+        AND systemId = #{systemId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+
+  </select>
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxSystem" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_system
+    where systemId = #{systemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wx_system
+    where systemId = #{systemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxSystem" >
+    insert into wx_system (systemId, systemType, parameter
+      )
+    values (#{systemId,jdbcType=INTEGER}, #{systemType,jdbcType=INTEGER}, #{parameter,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxSystem" >
+    insert into wx_system
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="systemId != null" >
+        systemId,
+      </if>
+      <if test="systemType != null" >
+        systemType,
+      </if>
+      <if test="parameter != null" >
+        parameter,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="systemId != null" >
+        #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="systemType != null" >
+        #{systemType,jdbcType=INTEGER},
+      </if>
+      <if test="parameter != null" >
+        #{parameter,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxSystem" >
+    update wx_system
+    <set >
+      <if test="parameter != null" >
+        parameter = #{parameter,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where systemType = #{systemType,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxSystem" >
+    update wx_system
+    set systemType = #{systemType,jdbcType=INTEGER},
+      parameter = #{parameter,jdbcType=VARCHAR}
+    where systemId = #{systemId,jdbcType=INTEGER}
+  </update>
+
+  <select id="getSystem" resultType="com.sharebedapp.jijl.model.WxSystem"  >
+    select
+    <include refid="Base_Column_List" />
+    from wx_system
+    where systemType = #{systemType}
+  </select>
+
+</mapper>

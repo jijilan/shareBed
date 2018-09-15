@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxHospitalMapper" >
+
+  <sql id="Base_Column_List" >
+    hospitalId, hospitalName, hospitalPic, contacts, contactsPhone, contractPeriod, hospitalProvince, 
+    hospitalCity, hospitalArea, hospitalAddress, longitude, latitude, equipmentPrice, 
+    hospitalCommissionRate, purchaserCommissionRate, isFlag, cTime
+  </sql>
+
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxHospital" parameterType="com.sharebedapp.jijl.model.WxHospital" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_hospital
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="hospitalName != null and hospitalName != ''" >
+      AND  hospitalName like concat('%',#{hospitalName,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="hospitalPic != null and hospitalPic != ''" >
+        AND   hospitalPic = #{hospitalPic,jdbcType=VARCHAR}
+      </if>
+      <if test="contacts != null and contacts != ''" >
+        AND  contacts like concat('%',#{contacts,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="contactsPhone != null and contactsPhone != ''" >
+        AND  contactsPhone = #{contactsPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="contractPeriod != null and contractPeriod != ''" >
+        AND  contractPeriod = #{contractPeriod,jdbcType=INTEGER}
+      </if>
+      <if test="hospitalProvince != null and hospitalProvince != ''" >
+        AND  hospitalProvince = #{hospitalProvince,jdbcType=VARCHAR}
+      </if>
+      <if test="hospitalCity != null and hospitalCity != ''" >
+        AND  hospitalCity = #{hospitalCity,jdbcType=VARCHAR}
+      </if>
+      <if test="hospitalArea != null and hospitalArea != ''" >
+        AND  hospitalArea = #{hospitalArea,jdbcType=VARCHAR}
+      </if>
+      <if test="hospitalAddress != null and hospitalAddress != ''" >
+        AND  hospitalAddress = #{hospitalAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="longitude != null and longitude != ''" >
+        AND  longitude = #{longitude,jdbcType=DECIMAL}
+      </if>
+      <if test="latitude != null and latitude != ''" >
+        AND  latitude = #{latitude,jdbcType=DECIMAL}
+      </if>
+      <if test="equipmentPrice != null and equipmentPrice != ''" >
+        AND  equipmentPrice = #{equipmentPrice,jdbcType=VARCHAR}
+      </if>
+      <if test="hospitalCommissionRate != null and hospitalCommissionRate != ''" >
+        AND   hospitalCommissionRate = #{hospitalCommissionRate,jdbcType=INTEGER}
+      </if>
+      <if test="purchaserCommissionRate != null and purchaserCommissionRate != ''" >
+        AND  purchaserCommissionRate = #{purchaserCommissionRate,jdbcType=INTEGER}
+      </if>
+      <if test="isFlag != null and isFlag != ''" >
+        AND   isFlag = #{isFlag,jdbcType=INTEGER}
+      </if>
+      <if test="cTime != null and cTime != ''" >
+        AND   cTime = #{cTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="hospitalId != null and hospitalId != ''" >
+        AND   hospitalId = #{hospitalId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+      order by cTime DESC
+  </select>
+
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxHospital" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_hospital
+    where hospitalId = #{hospitalId,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_hospital
+    where hospitalId = #{hospitalId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxHospital" >
+    insert into wx_hospital (hospitalId, hospitalName, hospitalPic, 
+      contacts, contactsPhone, contractPeriod, 
+      hospitalProvince, hospitalCity, hospitalArea, 
+      hospitalAddress, longitude, latitude, 
+      equipmentPrice, hospitalCommissionRate, 
+      purchaserCommissionRate, isFlag, cTime
+      )
+    values (#{hospitalId,jdbcType=VARCHAR}, #{hospitalName,jdbcType=VARCHAR}, #{hospitalPic,jdbcType=VARCHAR}, 
+      #{contacts,jdbcType=VARCHAR}, #{contactsPhone,jdbcType=VARCHAR}, #{contractPeriod,jdbcType=INTEGER}, 
+      #{hospitalProvince,jdbcType=VARCHAR}, #{hospitalCity,jdbcType=VARCHAR}, #{hospitalArea,jdbcType=VARCHAR}, 
+      #{hospitalAddress,jdbcType=VARCHAR}, #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL}, 
+      #{equipmentPrice,jdbcType=VARCHAR}, #{hospitalCommissionRate,jdbcType=INTEGER}, 
+      #{purchaserCommissionRate,jdbcType=INTEGER}, #{isFlag,jdbcType=INTEGER}, #{cTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxHospital" >
+    insert into wx_hospital
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hospitalId != null" >
+        hospitalId,
+      </if>
+      <if test="hospitalName != null" >
+        hospitalName,
+      </if>
+      <if test="hospitalPic != null" >
+        hospitalPic,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="contactsPhone != null" >
+        contactsPhone,
+      </if>
+      <if test="contractPeriod != null" >
+        contractPeriod,
+      </if>
+      <if test="hospitalProvince != null" >
+        hospitalProvince,
+      </if>
+      <if test="hospitalCity != null" >
+        hospitalCity,
+      </if>
+      <if test="hospitalArea != null" >
+        hospitalArea,
+      </if>
+      <if test="hospitalAddress != null" >
+        hospitalAddress,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="equipmentPrice != null" >
+        equipmentPrice,
+      </if>
+      <if test="hospitalCommissionRate != null" >
+        hospitalCommissionRate,
+      </if>
+      <if test="purchaserCommissionRate != null" >
+        purchaserCommissionRate,
+      </if>
+      <if test="isFlag != null" >
+        isFlag,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hospitalId != null" >
+        #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalName != null" >
+        #{hospitalName,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalPic != null" >
+        #{hospitalPic,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null" >
+        #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPeriod != null" >
+        #{contractPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalProvince != null" >
+        #{hospitalProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalCity != null" >
+        #{hospitalCity,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalArea != null" >
+        #{hospitalArea,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalAddress != null" >
+        #{hospitalAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="equipmentPrice != null" >
+        #{equipmentPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalCommissionRate != null" >
+        #{hospitalCommissionRate,jdbcType=INTEGER},
+      </if>
+      <if test="purchaserCommissionRate != null" >
+        #{purchaserCommissionRate,jdbcType=INTEGER},
+      </if>
+      <if test="isFlag != null" >
+        #{isFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxHospital" >
+    update wx_hospital
+    <set >
+      <if test="hospitalName != null" >
+        hospitalName = #{hospitalName,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalPic != null" >
+        hospitalPic = #{hospitalPic,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null" >
+        contactsPhone = #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPeriod != null" >
+        contractPeriod = #{contractPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalProvince != null" >
+        hospitalProvince = #{hospitalProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalCity != null" >
+        hospitalCity = #{hospitalCity,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalArea != null" >
+        hospitalArea = #{hospitalArea,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalAddress != null" >
+        hospitalAddress = #{hospitalAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="equipmentPrice != null" >
+        equipmentPrice = #{equipmentPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalCommissionRate != null" >
+        hospitalCommissionRate = #{hospitalCommissionRate,jdbcType=INTEGER},
+      </if>
+      <if test="purchaserCommissionRate != null" >
+        purchaserCommissionRate = #{purchaserCommissionRate,jdbcType=INTEGER},
+      </if>
+      <if test="isFlag != null" >
+        isFlag = #{isFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where hospitalId = #{hospitalId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxHospital" >
+    update wx_hospital
+    set hospitalName = #{hospitalName,jdbcType=VARCHAR},
+      hospitalPic = #{hospitalPic,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      contactsPhone = #{contactsPhone,jdbcType=VARCHAR},
+      contractPeriod = #{contractPeriod,jdbcType=INTEGER},
+      hospitalProvince = #{hospitalProvince,jdbcType=VARCHAR},
+      hospitalCity = #{hospitalCity,jdbcType=VARCHAR},
+      hospitalArea = #{hospitalArea,jdbcType=VARCHAR},
+      hospitalAddress = #{hospitalAddress,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DECIMAL},
+      latitude = #{latitude,jdbcType=DECIMAL},
+      equipmentPrice = #{equipmentPrice,jdbcType=VARCHAR},
+      hospitalCommissionRate = #{hospitalCommissionRate,jdbcType=INTEGER},
+      purchaserCommissionRate = #{purchaserCommissionRate,jdbcType=INTEGER},
+      isFlag = #{isFlag,jdbcType=INTEGER},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where hospitalId = #{hospitalId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getHospitalNameList" resultType="com.sharebedapp.jijl.model.wrap.HospitalInfo">
+    select hospitalName,hospitalId from wx_hospital
+  </select>
+
+</mapper>

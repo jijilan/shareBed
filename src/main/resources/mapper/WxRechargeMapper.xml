@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxRechargeMapper" >
+
+  <sql id="Base_Column_List" >
+    rechargeId, hospitalId, rechargeType, rechargePrice, startTime, endTime, startTimeOriginValue, 
+    endTimeOriginValue, minHour, overtimePrice, cTime
+  </sql>
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxRecharge" parameterType="com.sharebedapp.jijl.model.WxRecharge" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_recharge
+    <trim prefix="where" prefixOverrides="and | or">
+
+      <if test="hospitalId != null" >
+      AND  hospitalId = #{hospitalId,jdbcType=VARCHAR}
+      </if>
+      <if test="rechargeType != null" >
+        AND  rechargeType = #{rechargeType,jdbcType=INTEGER}
+      </if>
+      <if test="rechargePrice != null" >
+        AND  rechargePrice = #{rechargePrice,jdbcType=DECIMAL}
+      </if>
+      <if test="startTime != null" >
+        AND  startTime = #{startTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endTime != null" >
+        AND  endTime = #{endTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="startTimeOriginValue != null" >
+        AND  startTimeOriginValue = #{startTimeOriginValue,jdbcType=BIGINT}
+      </if>
+      <if test="endTimeOriginValue != null" >
+        AND  endTimeOriginValue = #{endTimeOriginValue,jdbcType=BIGINT}
+      </if>
+      <if test="minHour != null" >
+        AND  minHour = #{minHour,jdbcType=INTEGER}
+      </if>
+      <if test="overtimePrice != null" >
+        AND  overtimePrice = #{overtimePrice,jdbcType=DECIMAL}
+      </if>
+      <if test="cTime != null" >
+        AND  cTime = #{cTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="rechargeId != null" >
+        AND  rechargeId = #{rechargeId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+      order by cTime DESC
+  </select>
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxRecharge" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_recharge
+    where rechargeId = #{rechargeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_recharge
+    where rechargeId = #{rechargeId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxRecharge" >
+    insert into wx_recharge (rechargeId, hospitalId, rechargeType, 
+      rechargePrice, startTime, endTime, 
+      startTimeOriginValue, endTimeOriginValue, 
+      minHour, overtimePrice, cTime
+      )
+    values (#{rechargeId,jdbcType=VARCHAR}, #{hospitalId,jdbcType=VARCHAR}, #{rechargeType,jdbcType=INTEGER}, 
+      #{rechargePrice,jdbcType=DECIMAL}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{startTimeOriginValue,jdbcType=BIGINT}, #{endTimeOriginValue,jdbcType=BIGINT}, 
+      #{minHour,jdbcType=INTEGER}, #{overtimePrice,jdbcType=DECIMAL}, #{cTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxRecharge" >
+    insert into wx_recharge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rechargeId != null" >
+        rechargeId,
+      </if>
+      <if test="hospitalId != null" >
+        hospitalId,
+      </if>
+      <if test="rechargeType != null" >
+        rechargeType,
+      </if>
+      <if test="rechargePrice != null" >
+        rechargePrice,
+      </if>
+      <if test="startTime != null" >
+        startTime,
+      </if>
+      <if test="endTime != null" >
+        endTime,
+      </if>
+      <if test="startTimeOriginValue != null" >
+        startTimeOriginValue,
+      </if>
+      <if test="endTimeOriginValue != null" >
+        endTimeOriginValue,
+      </if>
+      <if test="minHour != null" >
+        minHour,
+      </if>
+      <if test="overtimePrice != null" >
+        overtimePrice,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rechargeId != null" >
+        #{rechargeId,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalId != null" >
+        #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeType != null" >
+        #{rechargeType,jdbcType=INTEGER},
+      </if>
+      <if test="rechargePrice != null" >
+        #{rechargePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTimeOriginValue != null" >
+        #{startTimeOriginValue,jdbcType=BIGINT},
+      </if>
+      <if test="endTimeOriginValue != null" >
+        #{endTimeOriginValue,jdbcType=BIGINT},
+      </if>
+      <if test="minHour != null" >
+        #{minHour,jdbcType=INTEGER},
+      </if>
+      <if test="overtimePrice != null" >
+        #{overtimePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxRecharge" >
+    update wx_recharge
+    <set >
+      <if test="hospitalId != null" >
+        hospitalId = #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeType != null" >
+        rechargeType = #{rechargeType,jdbcType=INTEGER},
+      </if>
+      <if test="rechargePrice != null" >
+        rechargePrice = #{rechargePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null" >
+        startTime = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        endTime = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTimeOriginValue != null" >
+        startTimeOriginValue = #{startTimeOriginValue,jdbcType=BIGINT},
+      </if>
+      <if test="endTimeOriginValue != null" >
+        endTimeOriginValue = #{endTimeOriginValue,jdbcType=BIGINT},
+      </if>
+      <if test="minHour != null" >
+        minHour = #{minHour,jdbcType=INTEGER},
+      </if>
+      <if test="overtimePrice != null" >
+        overtimePrice = #{overtimePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where rechargeId = #{rechargeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxRecharge" >
+    update wx_recharge
+    set hospitalId = #{hospitalId,jdbcType=VARCHAR},
+      rechargeType = #{rechargeType,jdbcType=INTEGER},
+      rechargePrice = #{rechargePrice,jdbcType=DECIMAL},
+      startTime = #{startTime,jdbcType=TIMESTAMP},
+      endTime = #{endTime,jdbcType=TIMESTAMP},
+      startTimeOriginValue = #{startTimeOriginValue,jdbcType=BIGINT},
+      endTimeOriginValue = #{endTimeOriginValue,jdbcType=BIGINT},
+      minHour = #{minHour,jdbcType=INTEGER},
+      overtimePrice = #{overtimePrice,jdbcType=DECIMAL},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where rechargeId = #{rechargeId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getByRecharge" resultType="com.sharebedapp.jijl.model.WxRecharge" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_recharge
+    where hospitalId = #{hospitalId}
+  </select>
+
+  <select id="getRechargeTypeListByHospitalId" resultType="java.lang.Integer" >
+    select distinct rechargeType from wx_recharge where hospitalId = #{hospitalId}
+  </select>
+
+</mapper>

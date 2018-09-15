@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxFeedbackMapper" >
+
+  <sql id="Base_Column_List" >
+    feedbackId, userId, feedbackType, context, feedbackUrl, userPhone, status, cTime
+  </sql>
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxFeedback" parameterType="com.sharebedapp.jijl.model.WxFeedback" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_feedback
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="userId != null" >
+       AND userId = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="feedbackType != null" >
+        AND feedbackType = #{feedbackType,jdbcType=INTEGER}
+      </if>
+      <if test="context != null" >
+        AND context = #{context,jdbcType=VARCHAR}
+      </if>
+      <if test="feedbackUrl != null" >
+        AND feedbackUrl = #{feedbackUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="userPhone != null" >
+        AND userPhone = #{userPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null" >
+        AND status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="cTime != null" >
+        AND cTime = #{cTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="feedbackId != null" >
+        AND feedbackId = #{feedbackId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+      order bycTime DESC
+
+  </select>
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxFeedback" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_feedback
+    where feedbackId = #{feedbackId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_feedback
+    where feedbackId = #{feedbackId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxFeedback" >
+    insert into wx_feedback (feedbackId, userId, feedbackType, 
+      context, feedbackUrl, userPhone, 
+      status, cTime)
+    values (#{feedbackId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{feedbackType,jdbcType=INTEGER}, 
+      #{context,jdbcType=VARCHAR}, #{feedbackUrl,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{cTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxFeedback" >
+    insert into wx_feedback
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="feedbackId != null" >
+        feedbackId,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="feedbackType != null" >
+        feedbackType,
+      </if>
+      <if test="context != null" >
+        context,
+      </if>
+      <if test="feedbackUrl != null" >
+        feedbackUrl,
+      </if>
+      <if test="userPhone != null" >
+        userPhone,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="feedbackId != null" >
+        #{feedbackId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackType != null" >
+        #{feedbackType,jdbcType=INTEGER},
+      </if>
+      <if test="context != null" >
+        #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackUrl != null" >
+        #{feedbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxFeedback" >
+    update wx_feedback
+    <set >
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackType != null" >
+        feedbackType = #{feedbackType,jdbcType=INTEGER},
+      </if>
+      <if test="context != null" >
+        context = #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackUrl != null" >
+        feedbackUrl = #{feedbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        userPhone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where feedbackId = #{feedbackId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxFeedback" >
+    update wx_feedback
+    set userId = #{userId,jdbcType=VARCHAR},
+      feedbackType = #{feedbackType,jdbcType=INTEGER},
+      context = #{context,jdbcType=VARCHAR},
+      feedbackUrl = #{feedbackUrl,jdbcType=VARCHAR},
+      userPhone = #{userPhone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where feedbackId = #{feedbackId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getFeedbackList" resultType="com.sharebedapp.jijl.model.sub.WxFeedbackSub"  >
+    select
+    u.nickName,
+    f.feedbackId,
+    f.context,
+    f.feedbackUrl,
+    f.userPhone,
+    f.status,
+    f.cTime
+    from wx_feedback f
+    LEFT JOIN wx_user u ON f.userId=u.userId
+    where f.feedbackType = #{feedbackType}
+    <if test="nickName != null and nickName != ''">
+      AND u.nickName LIKE CONCAT('%',#{nickName},'%')
+    </if>
+    <if test="status != null and status !=''" >
+      AND f.status = #{status}
+    </if>
+    <if test="startTime != null and startTime !=''">
+      and f.cTime <![CDATA[>=]]> #{startTime}
+    </if>
+    <if test="endTime != null and endTime !=''">
+      and f.cTime <![CDATA[<=]]> #{endTime}
+    </if>
+    order by f.cTime DESC
+  </select>
+
+  <select id="getFeedback" resultType="com.sharebedapp.jijl.model.sub.WxFeedbackSub"  >
+    select
+    u.nickName,
+    f.feedbackId,
+    f.context,
+    f.feedbackUrl,
+    f.userPhone,
+    f.status,
+    f.cTime
+    from wx_feedback f
+    LEFT JOIN wx_user u ON f.userId=u.userId
+    where f.feedbackId = #{feedbackId}
+  </select>
+
+
+</mapper>

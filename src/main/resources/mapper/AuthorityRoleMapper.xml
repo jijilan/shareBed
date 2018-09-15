@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.AuthorityRoleMapper" >
+  <sql id="Base_Column_List" >
+    id, roleName, roleNote, ctime, isFlag
+  </sql>
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.AuthorityRole" parameterType="com.sharebedapp.jijl.model.AuthorityRole" >
+    select
+    <include refid="Base_Column_List" />
+    from authority_role
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="id != null" >
+        AND id = #{id}
+      </if>
+      <if test="roleName != null" >
+        AND roleName = #{roleName}
+      </if>
+      <if test="roleNote != null" >
+        AND roleNote = #{roleNote}
+      </if>
+      <if test="ctime != null" >
+        AND ctime = #{ctime}
+      </if>
+      <if test="isFlag != null" >
+        AND isFlag = #{isFlag}
+      </if>
+    </trim>
+    ORDER BY ctime DESC
+  </select>
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.AuthorityRole" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from authority_role
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from authority_role
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.AuthorityRole" >
+    insert into authority_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleName != null" >
+        roleName,
+      </if>
+      <if test="roleNote != null" >
+        roleNote,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="isFlag != null" >
+        isFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleNote != null" >
+        #{roleNote,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isFlag != null" >
+        #{isFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.AuthorityRole" >
+    update authority_role
+    <set >
+      <if test="roleName != null" >
+        roleName = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleNote != null" >
+        roleNote = #{roleNote,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isFlag != null" >
+        isFlag = #{isFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getAuthorityRoleListByManager" resultType="com.sharebedapp.jijl.model.AuthorityRole">
+    select ar.id,ar.roleName,ar.roleNote,ar.ctime,
+    (select count(1) from authority_manager_role amr where amr.roleId = ar.id and amr.managerId = #{managerId})isFlag
+    from authority_role ar
+  </select>
+
+  <delete id="delRoleByManager">
+    delete from authority_manager_role
+    where managerId = #{managerId}
+  </delete>
+
+  <delete id="delRoleByRoleId">
+    delete from authority_role_menu
+    where roleId = #{roleId}
+  </delete>
+
+  <insert id="setRoleByManager">
+    insert into authority_manager_role(roleId,managerId) values
+    <foreach collection ="roleIds" item="item" index= "index" separator =",">
+      (#{item}, #{managerId})
+    </foreach >
+  </insert>
+
+  <select id="getAuthorityByRole" resultType="com.sharebedapp.jijl.model.AuthorityMenuView">
+    select am.id, am.interfaceName,am.pageUrl
+    <if test="roleId != null and roleId != ''">
+      ,(select count(1) from authority_role_menu rm where rm.roleId = #{roleId} and am.id = rm.menuId)isFlag
+    </if>
+    from authority_menu am where am.isFlag = 1
+    <if test="fid != null">
+      AND am.fid = #{fid}
+    </if>
+    <if test="interfaceType != null">
+      AND am.interfaceType = #{interfaceType}
+    </if>
+    ORDER BY am.orderBy ASC
+  </select>
+</mapper>

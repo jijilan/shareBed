@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxEquipmentMapper">
+
+    <sql id="Base_Column_List">
+    equipmentId,equipmenLockType,categoryId, hospitalId, departmentId, wardId, bedNumber, equipmentNumber,
+    equipmentStatus, userId, isBinding, characteristicValue, uuid, bluetoothName,cellVoltage, cTime
+  </sql>
+
+    <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxEquipment"
+            parameterType="com.sharebedapp.jijl.model.WxEquipment">
+        select
+
+        <include refid="Base_Column_List"/>
+        from wx_equipment
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="categoryId != null">
+                AND categoryId = #{categoryId,jdbcType=VARCHAR}
+            </if>
+            <if test="equipmenLockType != null">
+                AND equipmenLockType = #{hospitalId,jdbcType=INTEGER}
+            </if>
+            <if test="hospitalId != null and hospitalId != ''">
+                AND hospitalId = #{hospitalId,jdbcType=VARCHAR}
+            </if>
+            <if test="departmentId != null">
+                AND departmentId = #{departmentId,jdbcType=VARCHAR}
+            </if>
+            <if test="wardId != null">
+                AND wardId = #{wardId,jdbcType=VARCHAR}
+            </if>
+            <if test="bedNumber != null">
+                AND bedNumber = #{bedNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="equipmentNumber != null">
+                AND equipmentNumber = #{equipmentNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="equipmentStatus != null">
+                AND equipmentStatus = #{equipmentStatus,jdbcType=INTEGER}
+            </if>
+            <if test="userId != null and userId != '' ">
+                AND userId = #{userId,jdbcType=VARCHAR}
+            </if>
+            <if test="isBinding != null">
+                AND isBinding = #{isBinding,jdbcType=INTEGER}
+            </if>
+            <if test="characteristicValue != null">
+                AND characteristicValue = #{characteristicValue,jdbcType=VARCHAR}
+            </if>
+            <if test="uuid != null">
+                AND uuid = #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="bluetoothName != null">
+                AND bluetoothName = #{bluetoothName,jdbcType=VARCHAR}
+            </if>
+            <if test="cellVoltage != null">
+                AND cellVoltage = #{cellVoltage,jdbcType=VARCHAR}
+            </if>
+            <if test="cTime != null">
+                AND cTime = #{cTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="equipmentId != null">
+                AND equipmentId = #{equipmentId,jdbcType=VARCHAR}
+            </if>
+        </trim>
+        order by cTime DESC
+
+    </select>
+    <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxEquipment" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_equipment
+        where equipmentId = #{equipmentId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wx_equipment
+    where equipmentId = #{equipmentId,jdbcType=VARCHAR}
+  </delete>
+
+    <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxEquipment">
+    insert into wx_equipment (equipmentId,equipmenLockType, we.categoryId, we.hospitalId,
+      departmentId, we.wardId, we.bedNumber, we.
+      equipmentNumber, we.equipmentStatus, we.userId, we.
+      isBinding, we.characteristicValue, we.uuid, we.
+      bluetoothName,cellVoltage, we.cTime)
+    values (#{equipmentId,jdbcType=VARCHAR}, we.#{equipmenLockType,jdbcType=INTEGER},#{categoryId,jdbcType=VARCHAR}, we.#{hospitalId,jdbcType=VARCHAR},
+      #{departmentId,jdbcType=VARCHAR}, we.#{wardId,jdbcType=VARCHAR}, we.#{bedNumber,jdbcType=VARCHAR}, we.
+      #{equipmentNumber,jdbcType=VARCHAR}, we.#{equipmentStatus,jdbcType=INTEGER}, we.#{userId,jdbcType=VARCHAR}, we.
+      #{isBinding,jdbcType=INTEGER}, we.#{characteristicValue,jdbcType=VARCHAR}, we.#{uuid,jdbcType=VARCHAR}, we.
+      #{bluetoothName,jdbcType=VARCHAR},#{cellVoltage,jdbcType=VARCHAR}, we.#{cTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxEquipment">
+        insert into wx_equipment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="equipmentId != null">
+                equipmentId,
+            </if>
+            <if test="equipmenLockType != null">
+                equipmenLockType,
+            </if>
+            <if test="categoryId != null">
+                categoryId,
+            </if>
+            <if test="hospitalId != null">
+                hospitalId,
+            </if>
+            <if test="departmentId != null">
+                departmentId,
+            </if>
+            <if test="wardId != null">
+                wardId,
+            </if>
+            <if test="bedNumber != null">
+                bedNumber,
+            </if>
+            <if test="equipmentNumber != null">
+                equipmentNumber,
+            </if>
+            <if test="equipmentStatus != null">
+                equipmentStatus,
+            </if>
+            <if test="userId != null">
+                userId,
+            </if>
+            <if test="isBinding != null">
+                isBinding,
+            </if>
+            <if test="characteristicValue != null">
+                characteristicValue,
+            </if>
+            <if test="uuid != null">
+                uuid,
+            </if>
+            <if test="cellVoltage  != null">
+                cellVoltage,
+            </if>
+            <if test="bluetoothName != null">
+                bluetoothName,
+            </if>
+            <if test="cTime != null">
+                cTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="equipmentId != null">
+                #{equipmentId,jdbcType=VARCHAR},
+            </if>
+            <if test="equipmenLockType != null">
+                #{equipmenLockType,jdbcType=INTEGER},
+            </if>
+
+            <if test="categoryId != null">
+                #{categoryId,jdbcType=VARCHAR},
+            </if>
+            <if test="hospitalId != null">
+                #{hospitalId,jdbcType=VARCHAR},
+            </if>
+            <if test="departmentId != null">
+                #{departmentId,jdbcType=VARCHAR},
+            </if>
+            <if test="wardId != null">
+                #{wardId,jdbcType=VARCHAR},
+            </if>
+            <if test="bedNumber != null">
+                #{bedNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="equipmentNumber != null">
+                #{equipmentNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="equipmentStatus != null">
+                #{equipmentStatus,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="isBinding != null">
+                #{isBinding,jdbcType=INTEGER},
+            </if>
+            <if test="characteristicValue != null">
+                #{characteristicValue,jdbcType=VARCHAR},
+            </if>
+            <if test="uuid != null">
+                #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="bluetoothName != null">
+                #{bluetoothName,jdbcType=VARCHAR},
+            </if>
+            <if test="cellVoltage != null">
+                #{cellVoltage,jdbcType=VARCHAR},
+            </if>
+            <if test="cTime != null">
+                #{cTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxEquipment">
+        update wx_equipment
+        <set>
+
+            <if test="equipmenLockType != null">
+                equipmenLockType = #{equipmenLockType,jdbcType=INTEGER},
+            </if>
+            <if test="categoryId != null">
+                categoryId = #{categoryId,jdbcType=VARCHAR},
+            </if>
+            <if test="hospitalId != null">
+                hospitalId = #{hospitalId,jdbcType=VARCHAR},
+            </if>
+            <if test="departmentId != null">
+                departmentId = #{departmentId,jdbcType=VARCHAR},
+            </if>
+            <if test="wardId != null">
+                wardId = #{wardId,jdbcType=VARCHAR},
+            </if>
+            <if test="bedNumber != null">
+                bedNumber = #{bedNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="equipmentNumber != null">
+                equipmentNumber = #{equipmentNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="equipmentStatus != null">
+                equipmentStatus = #{equipmentStatus,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                userId = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="isBinding != null">
+                isBinding = #{isBinding,jdbcType=INTEGER},
+            </if>
+            <if test="characteristicValue != null">
+                characteristicValue = #{characteristicValue,jdbcType=VARCHAR},
+            </if>
+            <if test="uuid != null">
+                uuid = #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="bluetoothName != null">
+                bluetoothName = #{bluetoothName,jdbcType=VARCHAR},
+            </if>
+            <if test="cellVoltage != null">
+                cellVoltage = #{cellVoltage,jdbcType=VARCHAR},
+            </if>
+            <if test="cTime != null">
+                cTime = #{cTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where equipmentId = #{equipmentId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxEquipment">
+    update wx_equipment
+    set categoryId = #{categoryId,jdbcType=VARCHAR},
+      equipmenLockType = #{equipmenLockType,jdbcType=INTEGER},
+      hospitalId = #{hospitalId,jdbcType=VARCHAR},
+      departmentId = #{departmentId,jdbcType=VARCHAR},
+      wardId = #{wardId,jdbcType=VARCHAR},
+      bedNumber = #{bedNumber,jdbcType=VARCHAR},
+      equipmentNumber = #{equipmentNumber,jdbcType=VARCHAR},
+      equipmentStatus = #{equipmentStatus,jdbcType=INTEGER},
+      userId = #{userId,jdbcType=VARCHAR},
+      isBinding = #{isBinding,jdbcType=INTEGER},
+      characteristicValue = #{characteristicValue,jdbcType=VARCHAR},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      bluetoothName = #{bluetoothName,jdbcType=VARCHAR},
+      cellVoltage = #{cellVoltage,jdbcType=VARCHAR},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where equipmentId = #{equipmentId,jdbcType=VARCHAR}
+  </update>
+    <select id="getEquipmentByEqNumber" resultType="com.sharebedapp.jijl.model.WxEquipment">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_equipment
+        where equipmentNumber = #{equipmentNumber}
+    </select>
+
+
+    <select id="getEquipmentList" resultType="java.util.Map">
+        select
+        IFNULL(eq.equipmentId,'')equipmentId,
+        IFNULL(eq.equipmenLockType,0)equipmenLockType,
+        IFNULL(eq.equipmentStatus,0)equipmentStatus,
+        IFNULL(eq.equipmentNumber,'')equipmentNumber,
+        IFNULL(eq.bluetoothName,'')bluetoothName,
+        IFNULL(eq.isBinding,0)isBinding,
+
+        IFNULL(bn.deptName,'')bedNumber,
+
+        IFNULL(ca.categoryId,'')categoryId,
+        IFNULL(ca.categoryName,'')categoryName,
+
+        IFNULL(ho.hospitalId,'')hospitalId,
+        IFNULL(ho.hospitalName,'')hospitalName,
+        IFNULL(ho.equipmentPrice,'')equipmentPrice,
+        IFNULL(hospitalAddress,'')hospitalAddress,
+
+        IFNULL(dde.deptName,'')departName,
+        IFNULL(dde.deptNumber,'')departNumber,
+
+        IFNULL(wde.deptName,'')wardName,
+        IFNULL(wde.deptNumber,'')wardNumber
+
+        from wx_equipment eq
+        LEFT JOIN wx_category ca ON ca.categoryId=eq.categoryId
+        LEFT JOIN wx_hospital ho ON ho.hospitalId=eq.hospitalId
+        LEFT JOIN wx_dept dde ON dde.deptId=eq.departmentId
+        LEFT JOIN wx_dept wde ON wde.deptId=eq.wardId
+        LEFT JOIN wx_dept bn ON bn.deptId = eq.bedNumber
+
+        where 1=1
+        <if test="equipmentNumber != null and equipmentNumber != ''">
+            AND eq.equipmentNumber LIKE CONCAT('%',#{equipmentNumber},'%')
+        </if>
+        <if test="hospitalName != null and hospitalName != ''">
+            AND ho.hospitalName LIKE CONCAT('%',#{hospitalName},'%')
+        </if>
+        <if test="categoryId != null and categoryId !=''">
+            AND eq.categoryId = #{categoryId}
+        </if>
+        ORDER BY eq.cTime DESC
+    </select>
+    <select id="getEquipment" resultType="java.util.Map">
+    select
+    IFNULL(eq.equipmentStatus,0)equipmentStatus,
+    IFNULL(eq.equipmentNumber,'')equipmentNumber,
+      IFNULL(eq.equipmenLockType,0)equipmenLockType,
+    IFNULL(eq.bedNumber,'')bedNumber,
+
+    IFNULL(ca.categoryName,'')categoryName,
+    IFNULL(ca.categoryId,'')categoryId,
+    IFNULL(ho.hospitalName,'')hospitalName,
+    IFNULL(ho.equipmentPrice,'')equipmentPrice,
+    IFNULL(ho.hospitalAddress,'')hospitalAddress,
+
+    IFNULL(dde.deptName,'')departName,
+    IFNULL(dde.deptNumber,'')departNumber,
+
+    IFNULL(wde.deptName,'')wardName,
+    IFNULL(wde.deptNumber,'')wardNumber
+
+    from wx_equipment eq
+    LEFT JOIN wx_category ca ON ca.categoryId=eq.categoryId
+    LEFT JOIN wx_hospital ho ON ho.hospitalId=eq.hospitalId
+    LEFT JOIN wx_dept dde ON dde.deptId=eq.departmentId
+    LEFT JOIN wx_dept wde ON wde.deptId=eq.wardId
+    where equipmentId=#{equipmentId}
+
+  </select>
+
+
+    <select id="getEquipmentNumberList" resultType="java.lang.String">
+    select
+    equipmentNumber
+    from wx_equipment
+  </select>
+
+    <select id="countByCategoryId" resultType="java.lang.Integer">
+        select count(1) from wx_equipment
+        where categoryId = #{categoryId}
+        and hospitalId = #{hospitalId}
+        <if test="isNull != null and isNull != ''">
+            and userId is null
+        </if>
+        <if test="equipmentStatus != null and equipmentStatus != ''">
+            and equipmentStatus = #{equipmentStatus}
+        </if>
+        <if test="userId != null and userId != ''">
+            and userId = #{userId}
+        </if>
+    </select>
+
+    <select id="countTotalByCategoryId" resultType="java.lang.Integer">
+    select count(1) from wx_equipment
+    where categoryId = #{categoryId}
+    and hospitalId = #{hospitalId}
+  </select>
+
+    <select id="countAvailableByCategoryId" resultType="java.lang.Integer">
+    select count(1) from wx_equipment
+    where categoryId = #{categoryId}
+    and hospitalId = #{hospitalId}
+    and userId is null
+  </select>
+
+    <select id="getEquipmentAvailable" resultType="com.sharebedapp.jijl.model.WxEquipment">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_equipment
+        where hospitalId = #{hospitalId}
+        and userId is null
+        order by cTime asc
+        limit #{totalNum}
+    </select>
+
+    <select id="selectByHospitalId" resultType="com.sharebedapp.jijl.model.WxEquipment">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_equipment where hospitalId=#{hospitalId}
+        order by cTime
+    </select>
+
+    <select id="selectByUserId" resultType="com.sharebedapp.jijl.model.WxEquipment">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_equipment
+        where userId = #{userId}
+    </select>
+
+    <select id="getEquipmentListByHospitalId" resultType="com.sharebedapp.jijl.model.wrap.HospitalEquipmentInfo">
+        select we.equipmentNumber,
+        dt.deptName as departmentName, dt.deptNumber as building,
+        wd.deptName as wardName , wd.deptNumber as floor,
+        bn.deptName as bedNumber
+        from wx_equipment we
+        left join wx_category wc on wc.categoryId = we.categoryId
+        left join wx_dept dt on dt.deptId = we.departmentId
+        left join wx_dept wd on wd.deptId = we.wardId
+        left join wx_dept bn on bn.deptId = we.bedNumber
+        where we.hospitalId = #{hospitalId} and we.isBinding = 2
+        <if test="categoryId != null and categoryId != ''">
+            and we.categoryId = #{categoryId}
+        </if>
+        <if test="department != null and department != ''">
+            and we.departmentId = #{department}
+        </if>
+        <if test="ward != null and ward != ''">
+            and we.wardId = #{ward}
+        </if>
+    </select>
+
+    <select id="getShareorderHospital" resultType="java.util.Map">
+      select
+      IFNULL(eq.equipmentNumber,'')equipmentNumber ,
+      IFNULL(eq.bluetoothName,'')bluetoothName ,
+      IFNULL(eq.equipmenLockType,0)equipmenLockType ,
+      IFNULL( h.hospitalName,'')hospitalName ,
+      IFNULL( dde.deptName,'')deptName ,
+      IFNULL( dde.deptNumber,'')deptNumber ,
+      IFNULL(eq.bedNumber,'')bedNumber ,
+       IFNULL(wde.deptName,'')wardName ,
+       IFNULL(wde.deptNumber,'')wardNumber
+     from wx_equipment eq
+     LEFT JOIN wx_hospital h ON   h.hospitalId=eq.hospitalId
+     LEFT JOIN wx_dept dde ON dde.deptId=eq.departmentId
+     LEFT JOIN wx_dept wde ON wde.deptId=eq.wardId
+    where eq.equipmentNumber=#{equipmentNumber}
+  </select>
+
+
+    <select id="getByCategoryId" resultType="com.sharebedapp.jijl.model.WxEquipment">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_equipment
+        where categoryId = #{categoryId}
+    </select>
+
+    <update id="unbindEquipment">
+    update wx_equipment
+    set hospitalId = null ,departmentId = null ,wardId = null , bedNumber = null ,isBinding = 1
+    where equipmentNumber = #{equipmentNumber}
+   </update>
+
+    <select id="getEquipmentAmountByHospital" resultType="java.lang.Integer">
+    select count(1) from wx_equipment
+    where hospitalId = #{hospitalId}
+    and categoryId = #{categoryId}
+    and userId is null
+  </select>
+
+    <select id="selectByEquipmentNumber" resultType="com.sharebedapp.jijl.model.WxEquipment">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_equipment where equipmentNumber = #{equipmentNumber}
+    </select>
+
+    <select id="getEqTimes" resultType="java.util.Map">
+        SELECT
+         IFNULL(re.startTimeOriginValue,'') startTimeO,
+         IFNULL(re.endTimeOriginValue,'') endTimeO
+        from  wx_equipment eq
+        INNER JOIN wx_recharge re ON re.hospitalId=eq.hospitalId
+        WHERE   eq.equipmentNumber=#{equipmentNumber}
+    </select>
+
+    <update id="updateHospitalNull" >
+    update wx_equipment
+    set
+      hospitalId = null,
+      departmentId = null,
+      wardId = null,
+      bedNumber = null,
+      isBinding = 1
+    where equipmentId = #{equipmentId}
+  </update>
+
+
+    <select id="getByBluetoothName" resultType="com.sharebedapp.jijl.model.WxEquipment">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_equipment where bluetoothName = #{bluetoothName}
+    </select>
+</mapper>

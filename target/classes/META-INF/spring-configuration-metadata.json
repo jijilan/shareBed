@@ -1,0 +1,30 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.sharebedapp.jijl.utils.GaoDeMapUtil",
+      "name": "gaode",
+      "type": "com.sharebedapp.jijl.utils.GaoDeMapUtil"
+    },
+    {
+      "sourceType": "com.sharebedapp.jijl.utils.GouldAPI",
+      "name": "gould",
+      "type": "com.sharebedapp.jijl.utils.GouldAPI"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.sharebedapp.jijl.utils.GaoDeMapUtil",
+      "name": "gaode.key",
+      "description": "高德应用的地址",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.sharebedapp.jijl.utils.GaoDeMapUtil",
+      "defaultValue": "http:\/\/restapi.amap.com\/v3\/geocode\/geo",
+      "name": "gaode.map-codeurl",
+      "description": "地理编码地址",
+      "type": "java.lang.String"
+    }
+  ]
+}

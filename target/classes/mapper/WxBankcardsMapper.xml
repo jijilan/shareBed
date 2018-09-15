@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxBankcardsMapper" >
+  <resultMap id="BaseResultMap" type="com.sharebedapp.jijl.model.WxBankcards" >
+    <id column="bankCardId" property="bankCardId" jdbcType="VARCHAR" />
+    <result column="bankNumber" property="bankNumber" jdbcType="VARCHAR" />
+    <result column="bankRealName" property="bankRealName" jdbcType="VARCHAR" />
+    <result column="phoneNumber" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="bankName" property="bankName" jdbcType="VARCHAR" />
+    <result column="bankCardType" property="bankCardType" jdbcType="VARCHAR" />
+    <result column="consumerId" property="consumerId" jdbcType="VARCHAR" />
+    <result column="cTime" property="cTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    bankCardId, bankNumber, bankRealName, phoneNumber, bankName, bankCardType, consumerId ,cTime
+  </sql>
+
+  <sql id="Example_Where">
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="bankCardId != null" >
+        bankCardId = #{bankCardId,jdbcType=VARCHAR}
+      </if>
+      <if test="bankNumber != null" >
+        bankNumber = #{bankNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="bankRealName != null" >
+        bankRealName = #{bankRealName,jdbcType=VARCHAR}
+      </if>
+      <if test="phoneNumber != null" >
+        phoneNumber = #{phoneNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="bankName != null" >
+        bankName = #{bankName,jdbcType=VARCHAR}
+      </if>
+      <if test="bankCardType != null" >
+        bankCardType = #{bankCardType,jdbcType=VARCHAR}
+      </if>
+      <if test="consumerId != null" >
+        consumerId = #{consumerId,jdbcType=VARCHAR}
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </sql>
+
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sharebedapp.jijl.model.WxBankcards" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_bankcards
+    <include refid="Example_Where" />
+    order by cTime
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_bankcards
+    where bankCardId = #{bankCardId,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_bankcards
+    where bankCardId = #{bankCardId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxBankcards" >
+    insert into wx_bankcards (bankCardId, bankNumber, bankRealName, 
+      phoneNumber, bankName, bankCardType, consumerId,
+      cTime)
+    values (#{bankCardId,jdbcType=VARCHAR}, #{bankNumber,jdbcType=VARCHAR}, #{bankRealName,jdbcType=VARCHAR}, 
+      #{phoneNumber,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{bankCardType,jdbcType=VARCHAR}, 
+      #{consumerId,jdbcType=VARCHAR},#{cTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxBankcards" >
+    insert into wx_bankcards
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bankCardId != null" >
+        bankCardId,
+      </if>
+      <if test="bankNumber != null" >
+        bankNumber,
+      </if>
+      <if test="bankRealName != null" >
+        bankRealName,
+      </if>
+      <if test="phoneNumber != null" >
+        phoneNumber,
+      </if>
+      <if test="bankName != null" >
+        bankName,
+      </if>
+      <if test="bankCardType != null" >
+        bankCardType,
+      </if>
+      <if test="consumerId != null" >
+        consumerId,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bankCardId != null" >
+        #{bankCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNumber != null" >
+        #{bankNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankRealName != null" >
+        #{bankRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardType != null" >
+        #{bankCardType,jdbcType=VARCHAR},
+      </if>
+      <if test="consumerId != null" >
+        #{consumerId,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxBankcards" >
+    update wx_bankcards
+    <set >
+      <if test="bankNumber != null" >
+        bankNumber = #{bankNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankRealName != null" >
+        bankRealName = #{bankRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        phoneNumber = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        bankName = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardType != null" >
+        bankCardType = #{bankCardType,jdbcType=VARCHAR},
+      </if>
+      <if test="consumerId != null" >
+        consumerId = #{consumerId,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bankCardId = #{bankCardId,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxBankcards" >
+    update wx_bankcards
+    set bankNumber = #{bankNumber,jdbcType=VARCHAR},
+      bankRealName = #{bankRealName,jdbcType=VARCHAR},
+      phoneNumber = #{phoneNumber,jdbcType=VARCHAR},
+      bankName = #{bankName,jdbcType=VARCHAR},
+      bankCardType = #{bankCardType,jdbcType=VARCHAR},
+      consumerId = #{consumerId,jdbcType=VARCHAR},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where bankCardId = #{bankCardId,jdbcType=VARCHAR}
+  </update>
+</mapper>

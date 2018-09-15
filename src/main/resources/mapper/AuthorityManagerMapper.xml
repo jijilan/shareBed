@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.AuthorityManagerMapper" >
+
+  <sql id="Base_Column_List" >
+    managerId, userName, userAcount, passWord,managerType, isFlag, cTime
+  </sql>
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.AuthorityManager" parameterType="com.sharebedapp.jijl.model.AuthorityManager" >
+    select
+    <include refid="Base_Column_List" />
+    from authority_manager
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="userName != null and userName='' " >
+        AND userName = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="userAcount != null " >
+        AND userAcount = #{userAcount,jdbcType=VARCHAR}
+      </if>
+      <if test="passWord != null" >
+        AND passWord = #{passWord,jdbcType=VARCHAR}
+      </if>
+       <if test="managerType != null" >
+      AND managerType = #{managerType,jdbcType=INTEGER}
+    </if>
+      <if test="isFlag != null" >
+        AND isFlag = #{isFlag,jdbcType=INTEGER}
+      </if>
+      <if test="cTime != null" >
+        AND cTime = #{cTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="managerId != null" >
+        AND managerId = #{managerId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    order by cTime DESC
+  </select>
+
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.AuthorityManager" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from authority_manager
+    where managerId = #{managerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from authority_manager
+    where managerId = #{managerId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.AuthorityManager" >
+    insert into authority_manager (managerId, userName, userAcount,
+      passWord, managerType,isFlag, cTime
+      )
+    values (#{managerId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userAcount,jdbcType=VARCHAR}, 
+      #{passWord,jdbcType=VARCHAR},#{managerType,jdbcType=INTEGER}, #{isFlag,jdbcType=INTEGER}, #{cTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.AuthorityManager" >
+    insert into authority_manager
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="managerId != null" >
+        managerId,
+      </if>
+      <if test="userName != null" >
+        userName,
+      </if>
+      <if test="userAcount != null" >
+        userAcount,
+      </if>
+      <if test="passWord != null" >
+        passWord,
+      </if>
+       <if test="managerType != null" >
+         managerType,
+    </if>
+      <if test="isFlag != null" >
+        isFlag,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="managerId != null" >
+        #{managerId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAcount != null" >
+        #{userAcount,jdbcType=VARCHAR},
+      </if>
+      <if test="passWord != null" >
+        #{passWord,jdbcType=VARCHAR},
+      </if>
+      <if test="managerType != null" >
+      #{managerType,jdbcType=INTEGER},
+    </if>
+      <if test="isFlag != null" >
+        #{isFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.AuthorityManager" >
+    update authority_manager
+    <set >
+      <if test="userName != null" >
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAcount != null" >
+        userAcount = #{userAcount,jdbcType=VARCHAR},
+      </if>
+      <if test="passWord != null" >
+        passWord = #{passWord,jdbcType=VARCHAR},
+      </if>
+
+      <if test="managerType != null" >
+        managerType = #{managerType,jdbcType=INTEGER},
+      </if>
+      <if test="isFlag != null" >
+        isFlag = #{isFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where managerId = #{managerId,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.AuthorityManager" >
+    update authority_manager
+    set userName = #{userName,jdbcType=VARCHAR},
+      userAcount = #{userAcount,jdbcType=VARCHAR},
+      passWord = #{passWord,jdbcType=VARCHAR},
+      managerType = #{managerType,jdbcType=INTEGER},
+      isFlag = #{isFlag,jdbcType=INTEGER},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where managerId = #{managerId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="backLogin"  resultType="com.sharebedapp.jijl.model.AuthorityManager" >
+    select
+    <include refid="Base_Column_List" />
+    from authority_manager
+    where userAcount = #{userAcount} AND passWord = #{passWord}
+  </select>
+
+  <select id="getByUserAcount" resultType="int">
+    select count(1) from authority_manager where userAcount = #{userAcount}
+  </select>
+
+  <select id="selectByManagerList" resultType="com.sharebedapp.jijl.model.AuthorityManager">
+    select  <include refid="Base_Column_List" />  from authority_manager where 1=1 ORDER BY cTime DESC
+  </select>
+</mapper>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sharebedapp.jijl.mapper.WxRoleMapper" >
+
+  <sql id="Base_Column_List" >
+    roleId, roleName, cTime
+  </sql>
+  <select id="selectByExample" resultType="com.sharebedapp.jijl.model.WxRole" parameterType="com.sharebedapp.jijl.model.WxRole" >
+    select
+    <include refid="Base_Column_List" />
+    from wx_role
+    <trim prefix="where" prefixOverrides="and | or">
+        <if test="roleName != null" >
+         AND roleName = #{roleName,jdbcType=VARCHAR}
+        </if>
+        <if test="cTime != null" >
+          AND  cTime = #{cTime,jdbcType=TIMESTAMP}
+        </if>
+      <if test="roleId != null" >
+        AND  roleId = #{roleId,jdbcType=VARCHAR}
+      </if>
+    </trim>
+      order by cTime DESC
+  </select>
+
+  <select id="selectByPrimaryKey" resultType="com.sharebedapp.jijl.model.WxRole" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_role
+    where roleId = #{roleId,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_role
+    where roleId = #{roleId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.sharebedapp.jijl.model.WxRole" >
+    insert into wx_role (roleId, roleName, cTime
+      )
+    values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{cTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sharebedapp.jijl.model.WxRole" >
+    insert into wx_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        roleId,
+      </if>
+      <if test="roleName != null" >
+        roleName,
+      </if>
+      <if test="cTime != null" >
+        cTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sharebedapp.jijl.model.WxRole" >
+    update wx_role
+    <set >
+      <if test="roleName != null" >
+        roleName = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="cTime != null" >
+        cTime = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where roleId = #{roleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sharebedapp.jijl.model.WxRole" >
+    update wx_role
+    set roleName = #{roleName,jdbcType=VARCHAR},
+      cTime = #{cTime,jdbcType=TIMESTAMP}
+    where roleId = #{roleId,jdbcType=VARCHAR}
+  </update>
+</mapper>
